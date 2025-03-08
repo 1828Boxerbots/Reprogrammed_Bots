@@ -14,8 +14,46 @@
  * they are needed.
  */
 
-namespace OperatorConstants {
+namespace OperatorConstants 
+{
 
 inline constexpr int kDriverControllerPort = 0;
 
 }  // namespace OperatorConstants
+
+
+namespace DriveConstants
+{
+    //motor controler ports
+
+    inline constexpr int kLeftMotorAPort = 0;
+    inline constexpr int kLeftMotorBPort = 0;
+    inline constexpr int kRightMotorAPort = 0;
+    inline constexpr int kRightMotorBPort = 0;
+
+    inline constexpr int kDriveSpeed = 0;
+}
+
+namespace ShootConstants
+{
+    //Shooter motor ports
+
+    inline constexpr int kShooterPort = 0;
+    inline constexpr int kShooterSpeed = 0;
+}
+
+namespace LoadConstants
+{
+ inline constexpr int kLowerInnerMotorPort = 0;
+ inline constexpr int kHigherInnerMotorPort = 0;
+ inline constexpr int kLoadSpeed = 0;
+
+
+}
+
+namespace IntakeConstants
+{
+    inline constexpr int kIntakeMotorPort = 0;
+    inline constexpr int kIntakeSpeed = 0;
+   
+}
