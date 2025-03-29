@@ -3,6 +3,8 @@
 ShooterSub::ShooterSub()
 {
 //acts as an init
+m_shootMotor1.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
+m_shootMotor2.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
 }
 
 ShooterSub::~ShooterSub()
@@ -32,8 +34,8 @@ frc2::StartEndCommand ShooterSub::Setmotors(double speed)
     {
         m_shootMotor1.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
         m_shootMotor2.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
-        m_shootMotor3.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
-        m_shootMotor4.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
+        m_shootMotor3.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed); //may need to be inverted
+        m_shootMotor4.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed); //may need to be inverted
     },
     //end
     [this]
