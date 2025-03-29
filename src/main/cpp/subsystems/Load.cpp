@@ -15,7 +15,6 @@ Load::~Load() {} //Deconstructor
 void Load::Periodic() {
     frc::SmartDashboard::PutNumber("Load Front Motor Power", m_FrontLoadMotor.Get());
     frc::SmartDashboard::PutNumber("Load Mid Motor Power", m_MidLoadMotor.Get());
-    frc::SmartDashboard::PutNumber("Load Rear Motor Power", m_RearLoadMotor.Get());
 }
 
 frc2::StartEndCommand Load::RunAllLoad(float speed)
@@ -25,14 +24,12 @@ frc2::StartEndCommand Load::RunAllLoad(float speed)
     {
         m_FrontLoadMotor.Set(speed);
         m_MidLoadMotor.Set(speed);
-        m_RearLoadMotor.Set(speed);
     },
     //end
     [this]
     {
         m_FrontLoadMotor.Set(0);
         m_MidLoadMotor.Set(0);
-        m_RearLoadMotor.Set(0);
     };
 }
 
@@ -61,19 +58,5 @@ frc2::StartEndCommand Load::RunMidLoad(float speed)
     [this]
     {
         m_MidLoadMotor.Set(0);
-    };
-}
-
-frc2::StartEndCommand Load::RunRearLoad(float speed)
-{
-    //execute
-    [this, speed]
-    {
-        m_RearLoadMotor.Set(speed);
-    },
-    //end
-    [this]
-    {
-        m_RearLoadMotor.Set(0);
     };
 }

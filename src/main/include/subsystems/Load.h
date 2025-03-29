@@ -23,7 +23,6 @@ class Load : public frc2::SubsystemBase {
   frc2::StartEndCommand RunAllLoad(float speed);
   frc2::StartEndCommand RunFrontLoad(float speed);
   frc2::StartEndCommand RunMidLoad(float speed);
-  frc2::StartEndCommand RunRearLoad(float speed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -32,6 +31,5 @@ class Load : public frc2::SubsystemBase {
   //member variables
   frc::Victor m_FrontLoadMotor{LoadConstants::kFrontLoadMotorPort};
   frc::Victor m_MidLoadMotor{LoadConstants::kMidLoadMotorPort};
-  frc::Victor m_RearLoadMotor{LoadConstants::kRearLoadMotorPort};
   
 };

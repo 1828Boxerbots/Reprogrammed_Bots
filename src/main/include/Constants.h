@@ -33,8 +33,7 @@ namespace LoadConstants
 {
     //Ports
     inline constexpr int kFrontLoadMotorPort = 3;
-    inline constexpr int kMidLoadMotorPort = 4;
-    inline constexpr int kRearLoadMotorPort = 5;
+    inline constexpr int kMidLoadMotorPort = 4; 
 
     //Other konstants
     inline constexpr float kSpeed = 0;
