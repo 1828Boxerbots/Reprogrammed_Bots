@@ -1,26 +1,26 @@
 #include "subsystems/IntakeSubsystem.h"
 
-Intake::Intake()
+IntakeSub::IntakeSub()
 {
 
 }
 
-Intake::~Intake()
+IntakeSub::~IntakeSub()
 {
 
 }
 
-void Intake::Init()
+void IntakeSub::Init()
 {
 
 }
 
-void Intake::Periodic()
+void IntakeSub::Periodic()
 {
 frc::SmartDashboard::PutNumber("Intake Motorcontroller Temperature", m_intakeMotor.GetTemperature());
 }
 
-frc2::StartEndCommand Intake::SetMotors(double speed)
+frc2::StartEndCommand IntakeSub::SetMotors(double speed)
 {
     return frc2::StartEndCommand
     (

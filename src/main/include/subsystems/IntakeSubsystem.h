@@ -8,11 +8,11 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Constants.h" 
 
-class Intake : public frc2::SubsystemBase
+class IntakeSub : public frc2::SubsystemBase
 {
     public: 
-    Intake();
-    ~Intake();
+    IntakeSub();
+    ~IntakeSub();
     void Init();
     void Periodic() override;
     frc2::StartEndCommand SetMotors(double speed);

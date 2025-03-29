@@ -23,10 +23,15 @@ void RobotContainer::ConfigureBindings() {
   frc2::Trigger([this] {
     return m_subsystem.ExampleCondition();
   }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+  frc2::Trigger B_Button = m_driverController.B();
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+  m_driverController.B().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed)));
+  (m_driverController.LeftBumper() && m_driverController.B()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-IntakeConstants::kIntakeSpeed))); //reverse intake while left bumper and B held
+  m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed)));
+  (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-ShooterConstants::kShooterSpeed))); //reverse shooter while left bumper and right trigger held
+  m_driveSub.SetDefaultCommand(m_driveSub.RCDrive(m_driverController.GetLeftY(), m_driverController.GetRightX()));//Might work?
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
