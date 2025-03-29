@@ -12,7 +12,11 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  
+  m_Drive.SetDefaultCommand(frc2::RunCommand(
+    [this]
+    {
+      m_Drive.RCDrive({m_driverController.GetLeftY()},{m_driverController.GetRightX()});
+    }));
 
   // Configure the button bindings
   ConfigureBindings();
@@ -22,28 +26,28 @@ void RobotContainer::ConfigureBindings()
 {
   // Configure your trigger bindings here
 
-  //Load Binds
-  //Run Front
+  // Load Binds
+  // Run Front
   !m_driverController.LeftBumper()
     && m_driverController.A().WhileTrue(frc2::CommandPtr(m_Load.RunFrontLoad(LoadConstants::kSpeed)));
   m_driverController.LeftBumper()
     && m_driverController.A().WhileTrue(frc2::CommandPtr(m_Load.RunFrontLoad(-LoadConstants::kSpeed)));
-  //Run Mid
+  // Run Mid
   !m_driverController.LeftBumper()
     && m_driverController.X().WhileTrue(frc2::CommandPtr(m_Load.RunMidLoad(LoadConstants::kSpeed)));
   m_driverController.LeftBumper()
     && m_driverController.X().WhileTrue(frc2::CommandPtr(m_Load.RunMidLoad(-LoadConstants::kSpeed)));
-  //Run Both
+  // Run Both
   !m_driverController.LeftBumper()
-    && m_driverController.Y().WhileTrue(frc2::CommandPtr(m_Load.RunAllLoad(LoadConstants::kSpeed)));
+    && m_driverController.B().WhileTrue(frc2::CommandPtr(m_Load.RunAllLoad(LoadConstants::kSpeed)));
   m_driverController.LeftBumper()
-    && m_driverController.Y().WhileTrue(frc2::CommandPtr(m_Load.RunAllLoad(-LoadConstants::kSpeed)));
+    && m_driverController.B().WhileTrue(frc2::CommandPtr(m_Load.RunAllLoad(-LoadConstants::kSpeed)));
 
-  //Shooter Binds
-  //Out
+  // Shooter Binds
+  // Out
   !m_driverController.LeftBumper()
     && m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shooter.RunShooter(ShooterConstants::kSpeed)));
-  //In
+  // In
   m_driverController.LeftBumper()
     && m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shooter.RunShooter(-ShooterConstants::kSpeed)));
 }

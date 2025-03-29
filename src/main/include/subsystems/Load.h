@@ -28,7 +28,7 @@ class Load : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   
-  //member variables
+  // member variables
   frc::Victor m_FrontLoadMotor{LoadConstants::kFrontLoadMotorPort};
   frc::Victor m_MidLoadMotor{LoadConstants::kMidLoadMotorPort};
   

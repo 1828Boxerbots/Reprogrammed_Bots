@@ -19,13 +19,13 @@ void Load::Periodic() {
 
 frc2::StartEndCommand Load::RunAllLoad(float speed)
 {
-    //execute
+    // execute
     [this, speed]
     {
         m_FrontLoadMotor.Set(speed);
         m_MidLoadMotor.Set(speed);
     },
-    //end
+    // end
     [this]
     {
         m_FrontLoadMotor.Set(0);
@@ -35,12 +35,12 @@ frc2::StartEndCommand Load::RunAllLoad(float speed)
 
 frc2::StartEndCommand Load::RunFrontLoad(float speed)
 {
-    //execute
+    // execute
     [this, speed]
     {
         m_FrontLoadMotor.Set(speed);
     },
-    //end
+    // end
     [this]
     {
         m_FrontLoadMotor.Set(0);
@@ -49,12 +49,12 @@ frc2::StartEndCommand Load::RunFrontLoad(float speed)
 
 frc2::StartEndCommand Load::RunMidLoad(float speed)
 {
-    //execute
+    // execute
     [this, speed]
     {
         m_MidLoadMotor.Set(speed);
     },
-    //end
+    // end
     [this]
     {
         m_MidLoadMotor.Set(0);

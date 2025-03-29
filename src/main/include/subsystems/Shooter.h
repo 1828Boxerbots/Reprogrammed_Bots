@@ -9,6 +9,7 @@
 #include "Constants.h"
 #include <frc2/command/StartEndCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/DigitalInput.h>
 
 class Shooter : public frc2::SubsystemBase {
  public:
@@ -26,6 +27,10 @@ class Shooter : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  //Private Member Variables
-  frc::Victor m_ShooterMotor{ShooterConstants::kShooterMotorPort};
+  // Private Member Variables
+  frc::Victor m_ShooterMotor1{ShooterConstants::kShooter1MotorPort};
+  frc::Victor m_ShooterMotor2{ShooterConstants::kShooter2MotorPort};
+
+  frc::DigitalInput m_ShooterEncoder1{ShooterConstants::kShooter1EncoderPort};
+  frc::DigitalInput m_ShooterEncoder2{ShooterConstants::kShooter2EncoderPort};
 };
