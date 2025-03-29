@@ -11,7 +11,9 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+  m_driveSub.Init();
+  m_intakeSub.Init();
+  m_shooterSub.Init();
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -27,11 +29,12 @@ void RobotContainer::ConfigureBindings() {
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed)));
-  (m_driverController.LeftBumper() && m_driverController.B()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-IntakeConstants::kIntakeSpeed))); //reverse intake while left bumper and B held
-  m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed)));
+  m_driverController.X().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed))); //make intake run
+  (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-IntakeConstants::kIntakeSpeed))); //reverse intake while left bumper and X held
+  m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed))); //make shooter run
   (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-ShooterConstants::kShooterSpeed))); //reverse shooter while left bumper and right trigger held
-  m_driveSub.SetDefaultCommand(m_driveSub.RCDrive(m_driverController.GetLeftY(), m_driverController.GetRightX()));//Might work?
+  m_driverController.B().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed))).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed))); //makes both intake and shooter run from pressing B
+  m_driveSub.SetDefaultCommand(m_driveSub.RCDrive(m_driverController.GetLeftY(), m_driverController.GetRightX()));//Might work? Default command is drive
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
