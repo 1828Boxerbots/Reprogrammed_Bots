@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "units/velocity.h"
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -38,6 +40,8 @@ namespace DriveConstants
     inline constexpr int kDriveMotorRPM = 5310;
     inline constexpr float kDriveMotorGearRatio = 12.75;
     inline constexpr float kDtiveWheelDiameterMeter = 0.1524;
+    inline constexpr units::meters_per_second_t kMaxDriveMPS = 3.323_mps;
+    inline constexpr double kMaxDriveMPSDouble = 3.323;
 }
 
 namespace LoadConstants
@@ -47,7 +51,7 @@ namespace LoadConstants
     inline constexpr int kMidLoadMotorPort = 4; 
 
     // Other konstants
-    inline constexpr float kSpeed = 0;
+    inline constexpr float kSpeed = 0.25;
 }
 
 namespace ShooterConstants
@@ -61,5 +65,5 @@ namespace ShooterConstants
     inline constexpr int kShooter2EncoderPort = 1;
 
     // Other konstants
-    inline constexpr float kSpeed = 0;
+    inline constexpr float kSpeed = 0.25;
 }

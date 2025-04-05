@@ -15,7 +15,10 @@ RobotContainer::RobotContainer() {
   m_Drive.SetDefaultCommand(frc2::RunCommand(
     [this]
     {
-      m_Drive.RCDrive({m_driverController.GetLeftY()},{m_driverController.GetRightX()});
+      m_Drive.RCDrive({m_driverController.GetLeftY()}, 
+        {m_driverController.GetRightX()}, 
+        {m_driverController.GetLeftY() * DriveConstants::kMaxDriveMPS},
+        {m_driverController.GetRightX() * DriveConstants::kMaxDriveMPS});
     }));
 
   // Configure the button bindings
@@ -46,10 +49,10 @@ void RobotContainer::ConfigureBindings()
   // Shooter Binds
   // Out
   !m_driverController.LeftBumper()
-    && m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shooter.RunShooter(ShooterConstants::kSpeed)));
+    && m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shooter.RunShooter(m_driverController.GetRightTriggerAxis() * ShooterConstants::kSpeed)));
   // In
   m_driverController.LeftBumper()
-    && m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shooter.RunShooter(-ShooterConstants::kSpeed)));
+    && m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shooter.RunShooter(m_driverController.GetRightTriggerAxis() * -ShooterConstants::kSpeed)));
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

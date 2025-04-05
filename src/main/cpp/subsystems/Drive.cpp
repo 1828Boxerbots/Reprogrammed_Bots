@@ -27,30 +27,42 @@ void Drive::Periodic() {
     frc::SmartDashboard::PutNumber("LeftDriveMotor2 Encoder", m_LeftDriveEncoder2.Get());
     frc::SmartDashboard::PutNumber("RightDriveMotor1 Encoder", m_RightDriveEncoder1.Get());
     frc::SmartDashboard::PutNumber("RightDriveMotor2 Encoder", m_RightDriveEncoder2.Get());
+
+    frc::SmartDashboard::PutNumber("LeftDriveSpeed MPS", m_leftDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
+    frc::SmartDashboard::PutNumber("RightDriveSpeed MPS", m_rightDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
 }
 
-void Drive::RCDrive(double forwardPW, double turnPW)
+void Drive::RCDrive(double forwardPW, double turnPW, 
+    units::meters_per_second_t leftDriveSpeed, 
+    units::meters_per_second_t RightDriveSpeed)
 {
-    m_LeftDriveMotor1.Set((forwardPW + turnPW) /2);
-    m_LeftDriveMotor2.Set((forwardPW + turnPW) /2);
-    m_RightDriveMotor1.Set((forwardPW - turnPW) /2);
-    m_RightDriveMotor2.Set((forwardPW - turnPW) /2);
+    m_LeftDriveMotor1.Set((forwardPW + turnPW) /8);
+    m_LeftDriveMotor2.Set((forwardPW + turnPW) /8);
+    m_RightDriveMotor1.Set((forwardPW - turnPW) /8);
+    m_RightDriveMotor2.Set((forwardPW - turnPW) /8);
 
-    //m_leftDriveSpeed = ((forwardPW + turnPW) /2) / m_maxDriveMPS;
-    //m_RightDriveSpeed = ((forwardPW - turnPW) /2) / m_maxDriveMPS;
+    // leftDriveSpeed = (((forwardPW + turnPW) /2) / DriveConstants::kMaxDriveMPS);
+    // RightDriveSpeed = (((forwardPW - turnPW) /2) / DriveConstants::kMaxDriveMPS);
+
+    // Track Width of the robot
+    frc::DifferentialDriveKinematics kinematics{21.75_in};
+    
+    // Gets Drive Wheel Speeds {left side drive, right side drive}
+    frc::DifferentialDriveWheelSpeeds wheelSpeeds{leftDriveSpeed, RightDriveSpeed};
+    // Placeholder Values
+
+    // Convert Wheel Speeds to ChassisSpeeds
+    auto [linearVelocity, vy, angularVelocity] = kinematics.ToChassisSpeeds(wheelSpeeds);
 }
 
 
 // void Drive::DriveKinamatics()
 // {
-//     m_maxDriveMPS = (((DriveConstants::kDriveMotorRPM /60) / DriveConstants::kDriveMotorGearRatio)
-//         (DriveConstants::kDtiveWheelDiameterMeter * M_PI));
-
 //     // Track Width of the robot
 //     frc::DifferentialDriveKinematics kinematics{21.75_in};
     
 //     // Gets Drive Wheel Speeds {left side drive, right side drive}
-//     frc::DifferentialDriveWheelSpeeds wheelSpeeds{0_mps, 0_mps};
+//     frc::DifferentialDriveWheelSpeeds wheelSpeeds{m_leftDriveSpeed, m_RightDriveSpeed};
 //     // Placeholder Values
 
 //     // Convert Wheel Speeds to ChassisSpeeds

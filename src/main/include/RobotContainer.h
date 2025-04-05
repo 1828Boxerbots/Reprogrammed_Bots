@@ -12,6 +12,7 @@
 #include "subsystems/Load.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/ExampleSubsystem.h"
+#include <cmath>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since

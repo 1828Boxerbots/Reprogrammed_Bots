@@ -16,6 +16,7 @@
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <cmath>
+#include "units/velocity.h"
 
 class Drive : public frc2::SubsystemBase {
  public:
@@ -28,10 +29,7 @@ class Drive : public frc2::SubsystemBase {
   void Periodic() override;
 
   // @brief Will be used as a defualt command that moves the drivetrain
-  void RCDrive(double forwardPW, double turnPW);
-
-  // @briet Does the kinamatics for drive
-  void DriveKinamatics();
+  void RCDrive(double forwardPW, double turnPW, units::meters_per_second_t leftDriveSpeed, units::meters_per_second_t RightDriveSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -48,7 +46,6 @@ class Drive : public frc2::SubsystemBase {
   frc::DigitalInput m_RightDriveEncoder1{DriveConstants::kRightDrive1EncoderPort};
   frc::DigitalInput m_RightDriveEncoder2{DriveConstants::kRightDrive2EncoderPort};
 
-  double m_maxDriveMPS = 0;
   double m_leftDriveSpeed = 0;
-  double m_RightDriveSpeed = 0;
+  double m_rightDriveSpeed = 0;
 };
