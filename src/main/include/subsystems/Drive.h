@@ -9,7 +9,7 @@
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/StartEndCommand.h>
 #include <frc2/command/RunCommand.h>
-#include <rev/SparkMax.h>
+#include <frc/motorcontrol/Spark.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/DigitalInput.h>
 #include <frc/kinematics/ChassisSpeeds.h>
@@ -40,10 +40,10 @@ class Drive : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   // private member variables
-  rev::spark::SparkMax m_LeftDriveMotor1{DriveConstants::kLeftDrive1MotorPort, rev::spark::SparkMax::MotorType::kBrushed};
-  rev::spark::SparkMax m_LeftDriveMotor2{DriveConstants::kLeftDrive2MotorPort, rev::spark::SparkMax::MotorType::kBrushed};
-  rev::spark::SparkMax m_RightDriveMotor1{DriveConstants::kRightDrive1MotorPort, rev::spark::SparkMax::MotorType::kBrushed};
-  rev::spark::SparkMax m_RightDriveMotor2{DriveConstants::kRightDrive2MotorPort, rev::spark::SparkMax::MotorType::kBrushed};
+  frc::Spark m_LeftDriveMotor1{DriveConstants::kLeftDrive1MotorPort};
+  frc::Spark m_LeftDriveMotor2{DriveConstants::kLeftDrive2MotorPort};
+  frc::Spark m_RightDriveMotor1{DriveConstants::kRightDrive1MotorPort};
+  frc::Spark m_RightDriveMotor2{DriveConstants::kRightDrive2MotorPort};
 
   frc::DigitalInput m_LeftDriveEncoder1{DriveConstants::kLeftDrive1EncoderPort};
   frc::DigitalInput m_LeftDriveEncoder2{DriveConstants::kLeftDrive2EncoderPort};

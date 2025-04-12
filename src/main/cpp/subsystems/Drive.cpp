@@ -28,8 +28,8 @@ void Drive::Periodic() {
     frc::SmartDashboard::PutNumber("RightDriveMotor1 Encoder", m_RightDriveEncoder1.Get());
     frc::SmartDashboard::PutNumber("RightDriveMotor2 Encoder", m_RightDriveEncoder2.Get());
 
-    frc::SmartDashboard::PutNumber("LeftDriveSpeed MPS", m_leftDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
-    frc::SmartDashboard::PutNumber("RightDriveSpeed MPS", m_rightDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
+    // frc::SmartDashboard::PutNumber("LeftDriveSpeed MPS", m_leftDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
+    // frc::SmartDashboard::PutNumber("RightDriveSpeed MPS", m_rightDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
 }
 
 void Drive::ArcadeDrive(double fwd, double rot) {

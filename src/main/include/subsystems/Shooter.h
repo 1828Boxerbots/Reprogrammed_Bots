@@ -5,7 +5,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/motorcontrol/Victor.h>
+#include <frc/motorcontrol/VictorSP.h>
 #include "Constants.h"
 #include <frc2/command/StartEndCommand.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -28,8 +28,8 @@ class Shooter : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   // Private Member Variables
-  frc::Victor m_ShooterMotor1{ShooterConstants::kShooter1MotorPort};
-  frc::Victor m_ShooterMotor2{ShooterConstants::kShooter2MotorPort};
+  frc::VictorSP m_ShooterMotor1{ShooterConstants::kShooter1MotorPort};
+  frc::VictorSP m_ShooterMotor2{ShooterConstants::kShooter2MotorPort};
 
   frc::DigitalInput m_ShooterEncoder1{ShooterConstants::kShooter1EncoderPort};
   frc::DigitalInput m_ShooterEncoder2{ShooterConstants::kShooter2EncoderPort};

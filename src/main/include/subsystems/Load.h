@@ -7,7 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
 #include <frc2/command/StartEndCommand.h>
-#include <frc/motorcontrol/Victor.h>
+#include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
 class Load : public frc2::SubsystemBase {
@@ -29,7 +29,7 @@ class Load : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
   
   // member variables
-  frc::Victor m_FrontLoadMotor{LoadConstants::kFrontLoadMotorPort};
-  frc::Victor m_MidLoadMotor{LoadConstants::kMidLoadMotorPort};
+  frc::VictorSP m_FrontLoadMotor{LoadConstants::kFrontLoadMotorPort};
+  frc::VictorSP m_MidLoadMotor{LoadConstants::kMidLoadMotorPort};
   
 };
