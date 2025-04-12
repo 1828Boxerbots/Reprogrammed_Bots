@@ -32,28 +32,36 @@ void Drive::Periodic() {
     frc::SmartDashboard::PutNumber("RightDriveSpeed MPS", m_rightDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
 }
 
-void Drive::RCDrive(double forwardPW, double turnPW, 
-    units::meters_per_second_t leftDriveSpeed, 
-    units::meters_per_second_t RightDriveSpeed)
-{
-    m_LeftDriveMotor1.Set((forwardPW + turnPW) /8);
-    m_LeftDriveMotor2.Set((forwardPW + turnPW) /8);
-    m_RightDriveMotor1.Set((forwardPW - turnPW) /8);
-    m_RightDriveMotor2.Set((forwardPW - turnPW) /8);
+void Drive::ArcadeDrive(double fwd, double rot) {
+  m_drive.ArcadeDrive(fwd, rot);
 
-    // leftDriveSpeed = (((forwardPW + turnPW) /2) / DriveConstants::kMaxDriveMPS);
-    // RightDriveSpeed = (((forwardPW - turnPW) /2) / DriveConstants::kMaxDriveMPS);
-
-    // Track Width of the robot
-    frc::DifferentialDriveKinematics kinematics{21.75_in};
-    
-    // Gets Drive Wheel Speeds {left side drive, right side drive}
-    frc::DifferentialDriveWheelSpeeds wheelSpeeds{leftDriveSpeed, RightDriveSpeed};
-    // Placeholder Values
-
-    // Convert Wheel Speeds to ChassisSpeeds
-    auto [linearVelocity, vy, angularVelocity] = kinematics.ToChassisSpeeds(wheelSpeeds);
+  m_LeftDriveMotor2.Set(m_LeftDriveMotor1.Get());
+  m_RightDriveMotor2.Set(m_RightDriveMotor1.Get());
 }
+
+
+// void Drive::RCDrive(double forwardPW, double turnPW, 
+//     units::meters_per_second_t leftDriveSpeed, 
+//     units::meters_per_second_t RightDriveSpeed)
+// {
+//     m_LeftDriveMotor1.Set((forwardPW + turnPW) /8);
+//     m_LeftDriveMotor2.Set((forwardPW + turnPW) /8);
+//     m_RightDriveMotor1.Set((forwardPW - turnPW) /8);
+//     m_RightDriveMotor2.Set((forwardPW - turnPW) /8);
+
+//     // leftDriveSpeed = (((forwardPW + turnPW) /2) / DriveConstants::kMaxDriveMPS);
+//     // RightDriveSpeed = (((forwardPW - turnPW) /2) / DriveConstants::kMaxDriveMPS);
+
+//     // Track Width of the robot
+//     frc::DifferentialDriveKinematics kinematics{21.75_in};
+    
+//     // Gets Drive Wheel Speeds {left side drive, right side drive}
+//     frc::DifferentialDriveWheelSpeeds wheelSpeeds{leftDriveSpeed, RightDriveSpeed};
+//     // Placeholder Values
+
+//     // Convert Wheel Speeds to ChassisSpeeds
+//     auto [linearVelocity, vy, angularVelocity] = kinematics.ToChassisSpeeds(wheelSpeeds);
+// }
 
 
 // void Drive::DriveKinamatics()

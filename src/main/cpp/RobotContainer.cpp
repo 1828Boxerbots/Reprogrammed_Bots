@@ -12,17 +12,12 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
-  m_Drive.SetDefaultCommand(frc2::RunCommand(
-    [this]
-    {
-      m_Drive.RCDrive({m_driverController.GetLeftY()}, 
-        {m_driverController.GetRightX()}, 
-        {m_driverController.GetLeftY() * DriveConstants::kMaxDriveMPS},
-        {m_driverController.GetRightX() * DriveConstants::kMaxDriveMPS});
-    }));
-
   // Configure the button bindings
   ConfigureBindings();
+
+  m_Drive.ArcadeDrive(-m_driverController.GetLeftY(), 
+    m_driverController.GetRightX());
+
 }
 
 void RobotContainer::ConfigureBindings() 

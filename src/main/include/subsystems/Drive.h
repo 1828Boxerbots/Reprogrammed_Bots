@@ -13,8 +13,10 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/DigitalInput.h>
 #include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/drive/DifferentialDrive.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
+#include <frc/motorcontrol/PWMMotorController.h>
 #include <cmath>
 #include "units/velocity.h"
 
@@ -28,8 +30,10 @@ class Drive : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
+  void ArcadeDrive(double fwd, double rot);
+
   // @brief Will be used as a defualt command that moves the drivetrain
-  void RCDrive(double forwardPW, double turnPW, units::meters_per_second_t leftDriveSpeed, units::meters_per_second_t RightDriveSpeed);
+  //void RCDrive(double forwardPW, double turnPW, units::meters_per_second_t leftDriveSpeed, units::meters_per_second_t RightDriveSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -48,4 +52,7 @@ class Drive : public frc2::SubsystemBase {
 
   double m_leftDriveSpeed = 0;
   double m_rightDriveSpeed = 0;
+
+  frc::DifferentialDrive m_drive{[&](double output) { m_LeftDriveMotor1.Set(output); },
+                               [&](double output) { m_RightDriveMotor1.Set(output); }};
 };
