@@ -26,15 +26,13 @@ namespace DriveConstants
 {
     // Ports
     // Motors
-    inline constexpr int kLeftDrive1MotorPort = 1;
-    inline constexpr int kLeftDrive2MotorPort = 3;
-    inline constexpr int kRightDrive1MotorPort = 0;
-    inline constexpr int kRightDrive2MotorPort = 2;
+    inline constexpr int kLeftDriveMotorPort = 1;
+    inline constexpr int kRightDriveMotorPort = 0;
     // Encoders
-    inline constexpr int kLeftDrive1EncoderPort = 4;
-    inline constexpr int kLeftDrive2EncoderPort = 5;
-    inline constexpr int kRightDrive1EncoderPort = 2;
-    inline constexpr int kRightDrive2EncoderPort = 3;
+    // inline constexpr int kLeftDrive1EncoderPort = 4;
+    // inline constexpr int kLeftDrive2EncoderPort = 5;
+    // inline constexpr int kRightDrive1EncoderPort = 2;
+    // inline constexpr int kRightDrive2EncoderPort = 3;
 
     // Math
     inline constexpr int kDriveMotorRPM = 5310;
@@ -58,11 +56,10 @@ namespace ShooterConstants
 {
     // Posts
     // Motor
-    inline constexpr int kShooter1MotorPort = 14;
-    inline constexpr int kShooter2MotorPort = 15;
+    inline constexpr int kShooterMotorPort = 6;
     // Encoder
-    inline constexpr int kShooter1EncoderPort = 0;
-    inline constexpr int kShooter2EncoderPort = 1;
+    // inline constexpr int kShooter1EncoderPort = 0;
+    // inline constexpr int kShooter2EncoderPort = 1;
 
     // Other konstants
     inline constexpr float kSpeed = 0.25;

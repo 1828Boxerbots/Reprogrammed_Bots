@@ -9,24 +9,21 @@ Drive::Drive() // Constructor
     // Put all of the initialization things here
 
     // Inverting the selected motors
-    m_LeftDriveMotor1.SetInverted(false);
-    m_LeftDriveMotor2.SetInverted(false);
-    m_RightDriveMotor1.SetInverted(true);
-    m_RightDriveMotor2.SetInverted(true);
+    m_LeftDriveMotor.SetInverted(false);
+    m_RightDriveMotor.SetInverted(true);
+
 }
 Drive::~Drive() {} // Deconstructor
 
 // This method will be called once per scheduler run
 void Drive::Periodic() {
-    frc::SmartDashboard::PutNumber("LeftDriveMotor1 Power", m_LeftDriveMotor1.Get());
-    frc::SmartDashboard::PutNumber("LeftDriveMotor2 Power", m_LeftDriveMotor2.Get());
-    frc::SmartDashboard::PutNumber("RightDriveMotor1 Power", m_RightDriveMotor1.Get());
-    frc::SmartDashboard::PutNumber("RightDriveMotor2 Power", m_RightDriveMotor2.Get());
+    frc::SmartDashboard::PutNumber("LeftDriveMotor Power", m_LeftDriveMotor.Get());
+    frc::SmartDashboard::PutNumber("RightDriveMotor Power", m_RightDriveMotor.Get());
 
-    frc::SmartDashboard::PutNumber("LeftDriveMotor1 Encoder", m_LeftDriveEncoder1.Get());
-    frc::SmartDashboard::PutNumber("LeftDriveMotor2 Encoder", m_LeftDriveEncoder2.Get());
-    frc::SmartDashboard::PutNumber("RightDriveMotor1 Encoder", m_RightDriveEncoder1.Get());
-    frc::SmartDashboard::PutNumber("RightDriveMotor2 Encoder", m_RightDriveEncoder2.Get());
+    // frc::SmartDashboard::PutNumber("LeftDriveMotor1 Encoder", m_LeftDriveEncoder1.Get());
+    // frc::SmartDashboard::PutNumber("LeftDriveMotor2 Encoder", m_LeftDriveEncoder2.Get());
+    // frc::SmartDashboard::PutNumber("RightDriveMotor1 Encoder", m_RightDriveEncoder1.Get());
+    // frc::SmartDashboard::PutNumber("RightDriveMotor2 Encoder", m_RightDriveEncoder2.Get());
 
     // frc::SmartDashboard::PutNumber("LeftDriveSpeed MPS", m_leftDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
     // frc::SmartDashboard::PutNumber("RightDriveSpeed MPS", m_rightDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
@@ -34,9 +31,6 @@ void Drive::Periodic() {
 
 void Drive::ArcadeDrive(double fwd, double rot) {
   m_drive.ArcadeDrive(fwd, rot);
-
-  m_LeftDriveMotor2.Set(m_LeftDriveMotor1.Get());
-  m_RightDriveMotor2.Set(m_RightDriveMotor1.Get());
 }
 
 

@@ -13,11 +13,10 @@ Shooter::~Shooter() {} // Deconstructor
 
 // This method will be called once per scheduler run
 void Shooter::Periodic() {
-    frc::SmartDashboard::PutNumber("ShooterMotor1 Power", m_ShooterMotor1.Get());
-    frc::SmartDashboard::PutNumber("ShooterMotor2 Power", m_ShooterMotor2.Get());
+    frc::SmartDashboard::PutNumber("ShooterMotor Power", m_ShooterMotor.Get());
 
-    frc::SmartDashboard::PutNumber("ShooterMotor1 Encoder", m_ShooterEncoder1.Get());
-    frc::SmartDashboard::PutNumber("ShooterMotor2 Encoder", m_ShooterEncoder2.Get());
+    // frc::SmartDashboard::PutNumber("ShooterMotor1 Encoder", m_ShooterEncoder1.Get());
+    // frc::SmartDashboard::PutNumber("ShooterMotor2 Encoder", m_ShooterEncoder2.Get());
 }
 
 frc2::StartEndCommand Shooter::RunShooter(float speed)
@@ -25,14 +24,12 @@ frc2::StartEndCommand Shooter::RunShooter(float speed)
     // execute
     [this, speed]
     {
-        m_ShooterMotor1.Set(speed);
-        m_ShooterMotor2.Set(speed);
+        m_ShooterMotor.Set(speed);
     },
     // end
     [this]
     {
-        m_ShooterMotor1.Set(0);
-        m_ShooterMotor2.Set(0);
+        m_ShooterMotor.Set(0);
     };
 }
 

@@ -40,19 +40,17 @@ class Drive : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   // private member variables
-  frc::Spark m_LeftDriveMotor1{DriveConstants::kLeftDrive1MotorPort};
-  frc::Spark m_LeftDriveMotor2{DriveConstants::kLeftDrive2MotorPort};
-  frc::Spark m_RightDriveMotor1{DriveConstants::kRightDrive1MotorPort};
-  frc::Spark m_RightDriveMotor2{DriveConstants::kRightDrive2MotorPort};
+  frc::Spark m_LeftDriveMotor{DriveConstants::kLeftDriveMotorPort};
+  frc::Spark m_RightDriveMotor{DriveConstants::kRightDriveMotorPort};
 
-  frc::DigitalInput m_LeftDriveEncoder1{DriveConstants::kLeftDrive1EncoderPort};
-  frc::DigitalInput m_LeftDriveEncoder2{DriveConstants::kLeftDrive2EncoderPort};
-  frc::DigitalInput m_RightDriveEncoder1{DriveConstants::kRightDrive1EncoderPort};
-  frc::DigitalInput m_RightDriveEncoder2{DriveConstants::kRightDrive2EncoderPort};
+//   frc::DigitalInput m_LeftDriveEncoder1{DriveConstants::kLeftDrive1EncoderPort};
+//   frc::DigitalInput m_LeftDriveEncoder2{DriveConstants::kLeftDrive2EncoderPort};
+//   frc::DigitalInput m_RightDriveEncoder1{DriveConstants::kRightDrive1EncoderPort};
+//   frc::DigitalInput m_RightDriveEncoder2{DriveConstants::kRightDrive2EncoderPort};
 
   double m_leftDriveSpeed = 0;
   double m_rightDriveSpeed = 0;
 
-  frc::DifferentialDrive m_drive{[&](double output) { m_LeftDriveMotor1.Set(output); },
-                               [&](double output) { m_RightDriveMotor1.Set(output); }};
+  frc::DifferentialDrive m_drive{[&](double output) { m_LeftDriveMotor.Set(output); },
+                               [&](double output) { m_RightDriveMotor.Set(output); }};
 };

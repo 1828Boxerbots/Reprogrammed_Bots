@@ -28,9 +28,8 @@ class Shooter : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   // Private Member Variables
-  frc::VictorSP m_ShooterMotor1{ShooterConstants::kShooter1MotorPort};
-  frc::VictorSP m_ShooterMotor2{ShooterConstants::kShooter2MotorPort};
+  frc::VictorSP m_ShooterMotor{ShooterConstants::kShooterMotorPort};
 
-  frc::DigitalInput m_ShooterEncoder1{ShooterConstants::kShooter1EncoderPort};
-  frc::DigitalInput m_ShooterEncoder2{ShooterConstants::kShooter2EncoderPort};
+  // frc::DigitalInput m_ShooterEncoder1{ShooterConstants::kShooter1EncoderPort};
+  // frc::DigitalInput m_ShooterEncoder2{ShooterConstants::kShooter2EncoderPort};
 };
