@@ -8,6 +8,9 @@
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Constants.h"
+#include <frc/drive/DifferentialDrive.h>
+
+
 
 class DriveSub : public frc2::SubsystemBase
 {
@@ -18,7 +21,7 @@ DriveSub();
 
 void Init();
 void Periodic() override;
-frc2::StartEndCommand TankDrive(double Leftspeed, double Rightspeed);
+//frc2::StartEndCommand TankDrive(double Leftspeed, double Rightspeed);
 frc2::StartEndCommand RCDrive(double LeftY, double RightX);
 
 
@@ -27,7 +30,11 @@ ctre::phoenix::motorcontrol::can::VictorSPX m_driveMotorBackLeft{DriveConstants:
 ctre::phoenix::motorcontrol::can::VictorSPX m_driveMotorFrontLeft{DriveConstants::kDrive1Port};
 ctre::phoenix::motorcontrol::can::VictorSPX m_driveMotorFrontRight{DriveConstants::kDrive2Port};
 ctre::phoenix::motorcontrol::can::VictorSPX m_driveMotorBackRight{DriveConstants::kDrive3Port};
-
+  frc::DifferentialDrive m_driveObject
+  {
+      [&](double output) { m_driveMotorFrontLeft.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, output); },
+      [&](double output) { m_driveMotorFrontRight.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, output); }
+  };
 
 };
 

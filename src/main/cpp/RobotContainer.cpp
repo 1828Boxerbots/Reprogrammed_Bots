@@ -15,7 +15,7 @@ RobotContainer::RobotContainer() {
   m_intakeSub.Init();
   m_shooterSub.Init();
   // Configure the button bindings
-  ConfigureBindings();
+  ConfigureBindings(); 
 }
 
 void RobotContainer::ConfigureBindings() {
