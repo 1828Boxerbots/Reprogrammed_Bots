@@ -22,8 +22,16 @@ frc2::StartEndCommand Load::RunAllLoad(float speed)
     // execute
     [this, speed]
     {
-        m_FrontLoadMotor.Set(speed);
-        m_MidLoadMotor.Set(speed);
+        if(DemoMode::GetDemoMode)
+        {
+            m_FrontLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+            m_MidLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+        }
+        else
+        {
+            m_FrontLoadMotor.Set(speed);
+            m_MidLoadMotor.Set(speed);
+        }
     },
     // end
     [this]
@@ -38,7 +46,14 @@ frc2::StartEndCommand Load::RunFrontLoad(float speed)
     // execute
     [this, speed]
     {
-        m_FrontLoadMotor.Set(speed);
+        if(DemoMode::GetDemoMode)
+        {
+            m_FrontLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+        }
+        else
+        {
+            m_FrontLoadMotor.Set(speed);
+        }
     },
     // end
     [this]
@@ -52,7 +67,14 @@ frc2::StartEndCommand Load::RunMidLoad(float speed)
     // execute
     [this, speed]
     {
-        m_MidLoadMotor.Set(speed);
+        if(DemoMode::GetDemoMode)
+        {
+            m_MidLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+        }
+        else
+        {
+            m_MidLoadMotor.Set(speed);
+        }
     },
     // end
     [this]

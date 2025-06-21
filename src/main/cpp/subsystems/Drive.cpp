@@ -17,69 +17,27 @@ Drive::~Drive() {} // Deconstructor
 
 // This method will be called once per scheduler run
 void Drive::Periodic() {
-    frc::SmartDashboard::PutNumber("LeftDriveMotor Power", m_LeftDriveMotor.Get());
-    frc::SmartDashboard::PutNumber("RightDriveMotor Power", m_RightDriveMotor.Get());
-
-    // frc::SmartDashboard::PutNumber("LeftDriveMotor1 Encoder", m_LeftDriveEncoder1.Get());
-    // frc::SmartDashboard::PutNumber("LeftDriveMotor2 Encoder", m_LeftDriveEncoder2.Get());
-    // frc::SmartDashboard::PutNumber("RightDriveMotor1 Encoder", m_RightDriveEncoder1.Get());
-    // frc::SmartDashboard::PutNumber("RightDriveMotor2 Encoder", m_RightDriveEncoder2.Get());
-
-    // frc::SmartDashboard::PutNumber("LeftDriveSpeed MPS", m_leftDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
-    // frc::SmartDashboard::PutNumber("RightDriveSpeed MPS", m_rightDriveSpeed * DriveConstants::kMaxDriveMPSDouble);
+  frc::SmartDashboard::PutNumber("LeftDriveMotor Power", m_LeftDriveMotor.Get());
+  frc::SmartDashboard::PutNumber("RightDriveMotor Power", m_RightDriveMotor.Get());
 }
 
 void Drive::ArcadeDrive(double fwd, double rot) {
-  m_drive.ArcadeDrive(fwd, rot);
+  if(DemoMode::GetDemoMode)
+  {
+    m_drive.ArcadeDrive((fwd * DemoConstants::kDriveSpeed), (rot * DemoConstants::kDriveSpeed));
+  }
+  else
+  {
+    m_drive.ArcadeDrive(fwd, rot);
+  }
 }
-
-
-// void Drive::RCDrive(double forwardPW, double turnPW, 
-//     units::meters_per_second_t leftDriveSpeed, 
-//     units::meters_per_second_t RightDriveSpeed)
-// {
-//     m_LeftDriveMotor1.Set((forwardPW + turnPW) /8);
-//     m_LeftDriveMotor2.Set((forwardPW + turnPW) /8);
-//     m_RightDriveMotor1.Set((forwardPW - turnPW) /8);
-//     m_RightDriveMotor2.Set((forwardPW - turnPW) /8);
-
-//     // leftDriveSpeed = (((forwardPW + turnPW) /2) / DriveConstants::kMaxDriveMPS);
-//     // RightDriveSpeed = (((forwardPW - turnPW) /2) / DriveConstants::kMaxDriveMPS);
-
-//     // Track Width of the robot
-//     frc::DifferentialDriveKinematics kinematics{21.75_in};
-    
-//     // Gets Drive Wheel Speeds {left side drive, right side drive}
-//     frc::DifferentialDriveWheelSpeeds wheelSpeeds{leftDriveSpeed, RightDriveSpeed};
-//     // Placeholder Values
-
-//     // Convert Wheel Speeds to ChassisSpeeds
-//     auto [linearVelocity, vy, angularVelocity] = kinematics.ToChassisSpeeds(wheelSpeeds);
-// }
-
-
-// void Drive::DriveKinamatics()
-// {
-//     // Track Width of the robot
-//     frc::DifferentialDriveKinematics kinematics{21.75_in};
-    
-//     // Gets Drive Wheel Speeds {left side drive, right side drive}
-//     frc::DifferentialDriveWheelSpeeds wheelSpeeds{m_leftDriveSpeed, m_RightDriveSpeed};
-//     // Placeholder Values
-
-//     // Convert Wheel Speeds to ChassisSpeeds
-//     auto [linearVelocity, vy, angularVelocity] = kinematics.ToChassisSpeeds(wheelSpeeds);
-// }
-
 /*
-5310 RPM
-12.75:1
-6in diameter wheels
-3.323 mps
+  if(DemoMode::GetDemoMode)
+  {
 
-5310/60 = rps
-rps/12.75 = x
-convert 6in -> meter
-met * pi = dim
-dim * x = mps
+  }
+  else
+  {
+
+  }
 */

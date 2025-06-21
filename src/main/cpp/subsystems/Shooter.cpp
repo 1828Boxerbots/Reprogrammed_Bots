@@ -24,7 +24,14 @@ frc2::StartEndCommand Shooter::RunShooter(float speed)
     // execute
     [this, speed]
     {
-        m_ShooterMotor.Set(speed);
+        if(DemoMode::GetDemoMode)
+        {
+            m_ShooterMotor.Set(speed * DemoConstants::kShooterSpeed);
+        }
+        else
+        {
+            m_ShooterMotor.Set(speed);
+        }
     },
     // end
     [this]

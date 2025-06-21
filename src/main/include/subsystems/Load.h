@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include "Constants.h"
+#include "DemoMode.h"
 #include <frc2/command/StartEndCommand.h>
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>

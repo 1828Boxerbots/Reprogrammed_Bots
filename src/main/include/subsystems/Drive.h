@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Constants.h"
+#include "DemoMode.h"
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/command/StartEndCommand.h>
