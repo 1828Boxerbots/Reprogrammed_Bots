@@ -12,9 +12,9 @@ DemoMode::~DemoMode() {} // Deconstructor
 
 void DemoMode::Periodic() {
 
-    s_DemoModeEnabled = (m_DemoSwitch1.Get() || m_DemoSwitch2.Get());
+    s_DemoModeEnabled = (!m_DemoSwitch1.Get() || !m_DemoSwitch2.Get());
 
     frc::SmartDashboard::PutBoolean("Demo Mode Enabled", s_DemoModeEnabled);
-    frc::SmartDashboard::PutBoolean("Demo Switch Pos 1", m_DemoSwitch1.Get());
-    frc::SmartDashboard::PutBoolean("Demo Switch Pos 3", m_DemoSwitch2.Get());
+    frc::SmartDashboard::PutBoolean("Demo Switch Pos 1", !m_DemoSwitch1.Get());
+    frc::SmartDashboard::PutBoolean("Demo Switch Pos 3", !m_DemoSwitch2.Get());
 }

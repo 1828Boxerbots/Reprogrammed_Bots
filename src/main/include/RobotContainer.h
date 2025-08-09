@@ -11,6 +11,7 @@
 #include "subsystems/Drive.h"
 #include "subsystems/Load.h"
 #include "subsystems/Shooter.h"
+#include "subsystems/DemoMode.h"
 #include "subsystems/ExampleSubsystem.h"
 #include <cmath>
 
@@ -37,6 +38,6 @@ class RobotContainer {
   Drive m_Drive;
   Load m_Load;
   Shooter m_Shooter;
-
+  DemoMode m_DemoMode;
   void ConfigureBindings();
 };

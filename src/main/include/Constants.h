@@ -63,7 +63,7 @@ namespace DemoConstants
     inline constexpr int kDemo3Port = 7;
 
     // Du Speeds
-    inline constexpr float kDriveSpeed = 0.4;
-    inline constexpr float kLoadSpeed = 0.3;
-    inline constexpr float kShooterSpeed = 0.3;
+    inline constexpr float kDriveSpeed = 0.7;
+    inline constexpr float kLoadSpeed = 0.4;
+    inline constexpr float kShooterSpeed = 0.4;
 }

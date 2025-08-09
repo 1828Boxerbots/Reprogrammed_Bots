@@ -22,7 +22,7 @@ class Shooter : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  frc2::StartEndCommand RunShooter(float speed);
+  frc2::CommandPtr RunShooter(float speed, float demoSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

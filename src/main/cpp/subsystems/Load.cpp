@@ -17,68 +17,68 @@ void Load::Periodic() {
     frc::SmartDashboard::PutNumber("Load Mid Motor Power", m_MidLoadMotor.Get());
 }
 
-frc2::StartEndCommand Load::RunAllLoad(float speed)
-{
-    // execute
-    [this, speed]
-    {
-        if(DemoMode::GetDemoMode)
-        {
-            m_FrontLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
-            m_MidLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
-        }
-        else
-        {
-            m_FrontLoadMotor.Set(speed);
-            m_MidLoadMotor.Set(speed);
-        }
-    },
-    // end
-    [this]
-    {
-        m_FrontLoadMotor.Set(0);
-        m_MidLoadMotor.Set(0);
-    };
-}
+// frc2::StartEndCommand Load::RunAllLoad(float speed)
+// {
+//     // execute
+//     [this, speed]
+//     {
+//         if(DemoMode::GetDemoMode)
+//         {
+//             m_FrontLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+//             m_MidLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+//         }
+//         else
+//         {
+//             m_FrontLoadMotor.Set(speed);
+//             m_MidLoadMotor.Set(speed);
+//         }
+//     },
+//     // end
+//     [this]
+//     {
+//         m_FrontLoadMotor.Set(0);
+//         m_MidLoadMotor.Set(0);
+//     };
+// }
 
-frc2::StartEndCommand Load::RunFrontLoad(float speed)
-{
-    // execute
-    [this, speed]
-    {
-        if(DemoMode::GetDemoMode)
-        {
-            m_FrontLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
-        }
-        else
-        {
-            m_FrontLoadMotor.Set(speed);
-        }
-    },
-    // end
-    [this]
-    {
-        m_FrontLoadMotor.Set(0);
-    };
-}
+// frc2::StartEndCommand Load::RunFrontLoad(float speed)
+// {
+//     // execute
+//     [this, speed]
+//     {
+//         if(DemoMode::GetDemoMode)
+//         {
+//             m_FrontLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+//         }
+//         else
+//         {
+//             m_FrontLoadMotor.Set(speed);
+//         }
+//     },
+//     // end
+//     [this]
+//     {
+//         m_FrontLoadMotor.Set(0);
+//     };
+// }
 
-frc2::StartEndCommand Load::RunMidLoad(float speed)
-{
-    // execute
-    [this, speed]
-    {
-        if(DemoMode::GetDemoMode)
-        {
-            m_MidLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
-        }
-        else
-        {
-            m_MidLoadMotor.Set(speed);
-        }
-    },
-    // end
-    [this]
-    {
-        m_MidLoadMotor.Set(0);
-    };
-}
+// frc2::StartEndCommand Load::RunMidLoad(float speed)
+// {
+//     // execute
+//     [this, speed]
+//     {
+//         if(DemoMode::GetDemoMode)
+//         {
+//             m_MidLoadMotor.Set(speed * DemoConstants::kLoadSpeed);
+//         }
+//         else
+//         {
+//             m_MidLoadMotor.Set(speed);
+//         }
+//     },
+//     // end
+//     [this]
+//     {
+//         m_MidLoadMotor.Set(0);
+//     };
+// }

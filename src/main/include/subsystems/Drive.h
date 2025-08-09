@@ -55,3 +55,4 @@ class Drive : public frc2::SubsystemBase {
   frc::DifferentialDrive m_drive{[&](double output) { m_LeftDriveMotor.Set(output); },
                                [&](double output) { m_RightDriveMotor.Set(output); }};
 };
+

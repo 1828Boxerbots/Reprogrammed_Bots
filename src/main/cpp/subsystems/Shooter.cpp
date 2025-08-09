@@ -19,24 +19,26 @@ void Shooter::Periodic() {
     // frc::SmartDashboard::PutNumber("ShooterMotor2 Encoder", m_ShooterEncoder2.Get());
 }
 
-frc2::StartEndCommand Shooter::RunShooter(float speed)
+frc2::CommandPtr Shooter::RunShooter(float speed, float demoSpeed)
 {
-    // execute
-    [this, speed]
-    {
-        if(DemoMode::GetDemoMode)
+    return StartEnd(
+        // execute
+        [this, speed, demoSpeed]
         {
-            m_ShooterMotor.Set(speed * DemoConstants::kShooterSpeed);
-        }
-        else
+            if(DemoMode::GetDemoMode)
+            {
+                m_ShooterMotor.Set(demoSpeed);
+            }
+            else
+            {
+                m_ShooterMotor.Set(speed);
+            }
+        },
+        // end
+        [this]
         {
-            m_ShooterMotor.Set(speed);
+            m_ShooterMotor.Set(0);
         }
-    },
-    // end
-    [this]
-    {
-        m_ShooterMotor.Set(0);
-    };
+    );
 }
 

@@ -22,7 +22,7 @@ void Drive::Periodic() {
 }
 
 void Drive::ArcadeDrive(double fwd, double rot) {
-  if(DemoMode::GetDemoMode)
+  if(DemoMode::GetDemoMode())
   {
     m_drive.ArcadeDrive((fwd * DemoConstants::kDriveSpeed), (rot * DemoConstants::kDriveSpeed));
   }
