@@ -30,7 +30,7 @@ frc2::StartEndCommand IntakeSub::SetMotors(double speed)
         m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
     },
     //end
-    [this]
+    [this] 
     {
         m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
     }

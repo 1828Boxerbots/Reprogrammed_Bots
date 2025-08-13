@@ -62,14 +62,14 @@ void DriveSub::Periodic()
 //    
 //}
 
-frc2::StartEndCommand DriveSub::RCDrive(double LeftY, double RightX)
+frc2::StartEndCommand DriveSub::TankDrive(double LeftY, double RightY)
 {
     return frc2::StartEndCommand 
     (
         //Execute
-        [this, LeftY, RightX]
+        [this, LeftY, RightY]
         {
-            m_driveObject.ArcadeDrive(LeftY, RightX);
+            m_driveObject.TankDrive(LeftY, RightY);
         },
         //End
         [this]

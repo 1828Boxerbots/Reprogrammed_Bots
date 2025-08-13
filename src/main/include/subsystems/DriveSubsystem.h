@@ -20,9 +20,9 @@ DriveSub();
 
 
 void Init();
-void Periodic() override;
+void Periodic() override; 
 //frc2::StartEndCommand TankDrive(double Leftspeed, double Rightspeed);
-frc2::StartEndCommand RCDrive(double LeftY, double RightX);
+frc2::StartEndCommand TankDrive(double LeftY, double RightX);
 
 
 //Unsure of motor number and configuration, double check the true orentation of motor number to position on robot

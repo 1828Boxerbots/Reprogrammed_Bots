@@ -41,4 +41,5 @@ namespace IntakeConstants
 {
     inline constexpr int kIntakePort = 8;
     inline constexpr double kIntakeSpeed = 0.5;
+    inline constexpr int kPhotogatePort = 10; //PLACEHOLDER
 }

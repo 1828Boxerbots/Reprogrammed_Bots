@@ -6,6 +6,7 @@
 #include <ctre/phoenix/motorcontrol/can/VictorSPX.h>
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/DigitalInput.h>
 #include "Constants.h" 
 
 class IntakeSub : public frc2::SubsystemBase
@@ -17,5 +18,7 @@ class IntakeSub : public frc2::SubsystemBase
     void Periodic() override;
     frc2::StartEndCommand SetMotors(double speed);
 
-    ctre::phoenix::motorcontrol::can::VictorSPX m_intakeMotor{IntakeConstants::kIntakePort};
+    ctre::phoenix::motorcontrol::can::VictorSPX m_intakeMotor{IntakeConstants::kIntakePort}; 
+    frc::DigitalInput m_photoGate(IntakeConstants::kPhotogatePort);
+    
 };
