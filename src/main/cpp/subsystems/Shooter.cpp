@@ -21,7 +21,8 @@ void Shooter::Periodic() {
 
 frc2::CommandPtr Shooter::RunShooter(float speed, float demoSpeed)
 {
-    return StartEnd(
+    return StartEnd
+    (
         // execute
         [this, speed, demoSpeed]
         {

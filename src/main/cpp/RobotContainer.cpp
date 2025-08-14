@@ -17,7 +17,7 @@ RobotContainer::RobotContainer() {
 
   m_Drive.SetDefaultCommand(frc2::RunCommand( 
   [this] {
-    m_Drive.ArcadeDrive(-m_driverController.GetLeftY(), m_driverController.GetRightX());
+    m_Drive.ArcadeDrive(-m_driverController.GetLeftY(), -m_driverController.GetRightX());
   },
   {&m_Drive}));
 
@@ -31,29 +31,30 @@ void RobotContainer::ConfigureBindings()
 
   // // Load Binds
   // // Run Front
-  // !m_driverController.LeftBumper()
-  //   && m_driverController.A().WhileTrue(frc2::RunCommand([this] {m_Load.RunFrontLoad(LoadConstants::kSpeed);}, {&m_Load}).ToPtr());
-  // m_driverController.LeftBumper()
-  //   && m_driverController.A().WhileTrue(frc2::RunCommand([this] {m_Load.RunFrontLoad(-LoadConstants::kSpeed);}, {&m_Load}).ToPtr());
+  // (!m_driverController.LeftBumper()
+  //   && m_driverController.B()).WhileTrue(m_Load.RunFrontLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
+  // (m_driverController.LeftBumper()
+  //   && m_driverController.B()).WhileTrue(m_Load.RunFrontLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
   // // Run Mid
-  // !m_driverController.LeftBumper()
-  //   && m_driverController.X().WhileTrue(frc2::RunCommand([this] {m_Load.RunMidLoad(LoadConstants::kSpeed);}, {&m_Load}).ToPtr());
-  // m_driverController.LeftBumper()
-  //   && m_driverController.X().WhileTrue(frc2::RunCommand([this] {m_Load.RunMidLoad(-LoadConstants::kSpeed);}, {&m_Load}).ToPtr());
+  // (!m_driverController.LeftBumper()
+  //   && m_driverController.X()).WhileTrue(m_Load.RunLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
+  // (m_driverController.LeftBumper()
+  //   && m_driverController.X()).WhileTrue(m_Load.RunLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
   // // Run Both
-  // !m_driverController.LeftBumper()
-  //   && m_driverController.B().WhileTrue(frc2::RunCommand([this] {m_Load.RunAllLoad(LoadConstants::kSpeed);}, {&m_Load}).ToPtr());
-  // m_driverController.LeftBumper()
-  //   && m_driverController.B().WhileTrue(frc2::RunCommand([this] {m_Load.RunAllLoad(-LoadConstants::kSpeed);}, {&m_Load}).ToPtr());
+  // (!m_driverController.LeftBumper()
+  //   && m_driverController.Y()).WhileTrue(m_Load.RunAllLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
+  // (m_driverController.LeftBumper()
+  //   && m_driverController.Y()).WhileTrue(m_Load.RunAllLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
 
   // Shooter Binds
   // Out
-  !m_driverController.LeftBumper()
-    && m_driverController.RightTrigger().WhileTrue(m_Shooter.RunShooter(m_driverController.GetRightTriggerAxis() * ShooterConstants::kSpeed, -DemoConstants::kShooterSpeed));
-  // // In
-  // m_driverController.LeftBumper()
-  //   && m_driverController.RightTrigger().WhileTrue(frc2::RunCommand([this] {m_Shooter.RunShooter
-  //     (-ShooterConstants::kSpeed, -DemoConstants::kShooterSpeed);}, {&m_Shooter}).ToPtr());
+  (!m_driverController.LeftBumper()
+    && m_driverController.RightTrigger()).WhileTrue(m_Shooter.RunShooter(
+      m_driverController.GetRightTriggerAxis() * ShooterConstants::kSpeed, DemoConstants::kShooterSpeed));
+  // In
+  (m_driverController.LeftBumper()
+    && m_driverController.RightTrigger()).WhileTrue(m_Shooter.RunShooter(
+      m_driverController.GetRightTriggerAxis() * -ShooterConstants::kSpeed, -DemoConstants::kShooterSpeed));
 }
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {

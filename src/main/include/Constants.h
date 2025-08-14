@@ -36,14 +36,22 @@ namespace DriveConstants
     inline constexpr double kMaxDriveMPSDouble = 3.323;
 }
 
+namespace IntakeConstants
+{
+    // Ports
+    inline constexpr int kIntakeMotorPort = 3;
+
+    // Other Konstants
+    inline constexpr float kSpeed = 0.9;
+}
+
 namespace LoadConstants
 {
     // Ports
-    inline constexpr int kFrontLoadMotorPort = 3;
-    inline constexpr int kMidLoadMotorPort = 4; 
+    inline constexpr int kLoadMotorPort = 4; 
 
     // Other konstants
-    inline constexpr float kSpeed = 0.6;
+    inline constexpr float kSpeed = 0.5;
 }
 
 namespace ShooterConstants
@@ -53,7 +61,7 @@ namespace ShooterConstants
 
 
     // Other konstants
-    inline constexpr float kSpeed = 0.7;
+    inline constexpr float kSpeed = 0.9;
 }
 
 namespace DemoConstants
@@ -63,7 +71,8 @@ namespace DemoConstants
     inline constexpr int kDemo3Port = 7;
 
     // Du Speeds
-    inline constexpr float kDriveSpeed = 0.7;
-    inline constexpr float kLoadSpeed = 0.4;
-    inline constexpr float kShooterSpeed = 0.4;
+    inline constexpr float kDriveSpeed = 0.75;
+    inline constexpr float kIntakeSpeed = 0.7;
+    inline constexpr float kLoadSpeed = 0.3;
+    inline constexpr float kShooterSpeed = 0.3;
 }
