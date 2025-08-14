@@ -19,6 +19,6 @@ class IntakeSub : public frc2::SubsystemBase
     frc2::StartEndCommand SetMotors(double speed);
 
     ctre::phoenix::motorcontrol::can::VictorSPX m_intakeMotor{IntakeConstants::kIntakePort}; 
-    frc::DigitalInput m_photoGate(IntakeConstants::kPhotogatePort);
+    frc::DigitalInput m_photoGate{IntakeConstants::kPhotogatePort};
     
 };
