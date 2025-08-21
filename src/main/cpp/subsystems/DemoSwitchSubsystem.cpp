@@ -23,7 +23,6 @@ void DemoSwitchSub::Periodic()
 }
 
 bool DemoSwitchSub::GetDemoSwitch()
-{
-    m_DemoSwitchStatus = m_DemoSwitch.Get();
-    return m_DemoSwitchStatus;  //Could this return statement be shortened? Yes! Do I care? No.
+{ 
+    return m_DemoSwitch.Get();  //Could this return statement be shortened? Yes! Do I care? No.
 }

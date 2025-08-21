@@ -19,6 +19,6 @@ class DemoSwitchSub : public frc2::SubsystemBase
 
 
     private:
-    static bool m_DemoSwitchStatus;
+    //static bool m_DemoSwitchStatus;
     static frc::DigitalInput m_DemoSwitch;
 };
