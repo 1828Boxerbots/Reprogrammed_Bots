@@ -36,10 +36,17 @@ namespace ShooterConstants
     inline constexpr int kShooter3Port = 6; 
     inline constexpr int kShooter4Port = 7; 
     inline constexpr double kShooterSpeed = 0.6;
+    inline constexpr double kDemoShooterspeed = 0.4; //PLACEHOLDER
 }
 namespace IntakeConstants
 {
     inline constexpr int kIntakePort = 8;
     inline constexpr double kIntakeSpeed = 0.5;
-    inline constexpr int kPhotogatePort = 10; //PLACEHOLDER
+    inline constexpr double kDemoIntakeSpeed = 0.4; //PLACEHOLDER, POSSIBLY NOT NEEDED
+    inline constexpr int kPhotogatePort = 1; 
+}
+
+namespace DemoSwitchConstants
+{ 
+    inline constexpr int kDemoSwitchPort = 0; 
 }
