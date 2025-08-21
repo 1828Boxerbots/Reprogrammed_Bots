@@ -43,30 +43,6 @@ void Load::Periodic() {
 //     );
 // }
 
-// frc2::CommandPtr Load::RunFrontLoad(float speed, float demoSpeed)
-// {
-//     return StartEnd
-//     (
-//         // execute
-//         [this, speed, demoSpeed]
-//         {
-//             if(DemoMode::GetDemoMode)
-//             {
-//                 m_FrontLoadMotor.Set(demoSpeed);
-//             }
-//             else
-//             {
-//                 m_FrontLoadMotor.Set(speed);
-//             }
-//         },
-//         // end
-//         [this]
-//         {
-//             m_FrontLoadMotor.Set(0);
-//         }
-//     );
-// }
-
 frc2::CommandPtr Load::RunLoad(float speed, float demoSpeed)
 {
     return StartEnd

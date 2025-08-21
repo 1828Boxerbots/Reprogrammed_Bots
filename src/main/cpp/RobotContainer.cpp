@@ -27,26 +27,35 @@ void RobotContainer::ConfigureBindings()
 {
   // Configure your trigger bindings here
   
+  // Run Intake
+  // In
+  (!m_driverController.LeftBumper()
+    && m_driverController.B()).WhileTrue(m_Intake.RunIntake(IntakeConstants::kSpeed, DemoConstants::kIntakeSpeed));
+  // Out
+  (m_driverController.LeftBumper()
+    && m_driverController.B()).WhileTrue(m_Intake.RunIntake(-IntakeConstants::kSpeed, -DemoConstants::kIntakeSpeed));
+  
+  // Run Load
+  // In
+  (!m_driverController.LeftBumper()
+    && m_driverController.X()).WhileTrue(m_Load.RunLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
+  // Out
+  (m_driverController.LeftBumper()
+    && m_driverController.X()).WhileTrue(m_Load.RunLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
 
+  // Run Intake & Load
+  // In
+  (!m_driverController.LeftBumper()
+    && m_driverController.Y()).WhileTrue(m_Intake.RunIntake(IntakeConstants::kSpeed, DemoConstants::kIntakeSpeed));
+  (!m_driverController.LeftBumper()
+    && m_driverController.Y()).WhileTrue(m_Load.RunLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
+  // Out
+  (m_driverController.LeftBumper()
+    && m_driverController.B()).WhileTrue(m_Intake.RunIntake(-IntakeConstants::kSpeed, -DemoConstants::kIntakeSpeed));
+  (m_driverController.LeftBumper()
+    && m_driverController.X()).WhileTrue(m_Load.RunLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
 
-  // // Load Binds
-  // // Run Front
-  // (!m_driverController.LeftBumper()
-  //   && m_driverController.B()).WhileTrue(m_Load.RunFrontLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
-  // (m_driverController.LeftBumper()
-  //   && m_driverController.B()).WhileTrue(m_Load.RunFrontLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
-  // // Run Mid
-  // (!m_driverController.LeftBumper()
-  //   && m_driverController.X()).WhileTrue(m_Load.RunLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
-  // (m_driverController.LeftBumper()
-  //   && m_driverController.X()).WhileTrue(m_Load.RunLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
-  // // Run Both
-  // (!m_driverController.LeftBumper()
-  //   && m_driverController.Y()).WhileTrue(m_Load.RunAllLoad(LoadConstants::kSpeed, DemoConstants::kLoadSpeed));
-  // (m_driverController.LeftBumper()
-  //   && m_driverController.Y()).WhileTrue(m_Load.RunAllLoad(-LoadConstants::kSpeed, -DemoConstants::kLoadSpeed));
-
-  // Shooter Binds
+  // Run Shooter
   // Out
   (!m_driverController.LeftBumper()
     && m_driverController.RightTrigger()).WhileTrue(m_Shooter.RunShooter(
