@@ -26,6 +26,8 @@ namespace DriveConstants
     inline constexpr int kDrive1Port = 1;
     inline constexpr int kDrive2Port = 2;
     inline constexpr int kDrive3Port = 3;
+    inline constexpr int kDemoDriveSpeedMultiplier = 0.5; //Placeholder value
+    inline constexpr int kDriveSpeedMultiplier = 1; 
     //.GetTemperature Method of VictorSPX may get temp of controller not motor itself, be aware. 
     inline constexpr double kTempuratureLimit = 60; //Placeholder-ish value, unsure of good number. 
 }
@@ -36,13 +38,13 @@ namespace ShooterConstants
     inline constexpr int kShooter3Port = 6; 
     inline constexpr int kShooter4Port = 7; 
     inline constexpr double kShooterSpeed = 0.6;
-    inline constexpr double kDemoShooterspeed = 0.4; //PLACEHOLDER
+    inline constexpr double kDemoShooterspeed = 0.4; //PLACEHOLDER (Test)
 }
 namespace IntakeConstants
 {
     inline constexpr int kIntakePort = 8;
     inline constexpr double kIntakeSpeed = 0.5;
-    inline constexpr double kDemoIntakeSpeed = 0.4; //PLACEHOLDER, POSSIBLY NOT NEEDED
+    inline constexpr double kDemoIntakeSpeed = 0.5; 
     inline constexpr int kPhotogatePort = 1; 
 }
 

@@ -59,7 +59,7 @@ void DriveSub::Periodic()
 //        m_driveMotorFrontRight.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
 //    }
 //    );
-//    
+//
 //}
 
 frc2::StartEndCommand DriveSub::TankDrive(double LeftY, double RightY)

@@ -19,7 +19,7 @@ void DemoSwitchSub::Init()
 
 void DemoSwitchSub::Periodic()
 {
-
+    frc::SmartDashboard::PutBoolean("DemoSwitch Status", m_DemoSwitch.Get());
 }
 
 bool DemoSwitchSub::GetDemoSwitch()
