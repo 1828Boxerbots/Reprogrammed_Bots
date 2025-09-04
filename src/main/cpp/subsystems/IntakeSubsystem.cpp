@@ -38,3 +38,25 @@ frc2::StartEndCommand IntakeSub::SetMotors(double speed)
     );
 
 }
+
+frc2::FunctionalCommand IntakeSub::LoadToPhotoGate(double speed)
+{
+  //Start
+  [this] 
+  {
+
+  },
+  //Execute
+  [this, speed] 
+  {
+    m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
+  },
+  //End
+  [this] (bool interrupted) 
+  {
+    m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);    
+  },
+  //End Condition
+  [this] {return m_photoGate.Get() == true;};
+  
+}
