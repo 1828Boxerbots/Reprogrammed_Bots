@@ -5,6 +5,7 @@
 #include "subsystems/DriveSub.h"
 #include "subsystems/DemoSwitchSub.h"
 
+
 DriveSub::DriveSub() = default;
 
 DriveSub::DriveSub()
@@ -22,6 +23,7 @@ void DriveSub::Periodic()
   frc::SmartDashboard::PutNumber("LeftB Motor: ",  m_leftMotorA.GetMotorOutputVoltage());
   frc::SmartDashboard::PutNumber("RightA Motor: ", m_RightMotorA.GetMotorOutputVoltage());
   frc::SmartDashboard::PutNumber("RightB Motor: ", m_RightMotorB.GetMotorOutputVoltage());
+  frc::SmartDashboard::PutBoolean("test: ", false);
 }
 
  frc2::RunCommand DriveSub::RC(double LeftY, double RightX) // make this the run command

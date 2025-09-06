@@ -10,6 +10,6 @@ bool DemoSwitchSub::Readswitch()
 
 void DemoSwitchSub::Periodic()
 {
-    frc::SmartDashboard::PutNumber("Demo Switch value: ", m_DemoSwitch.Get());
+    frc::SmartDashboard::PutBoolean("Demo Switch value: ", m_DemoSwitch.Get());
   
 }
