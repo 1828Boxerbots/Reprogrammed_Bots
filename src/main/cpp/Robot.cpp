@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 
+
 Robot::Robot() {}
 
 /**
@@ -16,8 +17,10 @@ Robot::Robot() {}
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {
+void Robot::RobotPeriodic() 
+{
   frc2::CommandScheduler::GetInstance().Run();
+
 }
 
 /**
@@ -36,6 +39,7 @@ void Robot::DisabledPeriodic() {}
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
+
   if (m_autonomousCommand) {
     m_autonomousCommand->Schedule();
   }
@@ -51,12 +55,18 @@ void Robot::TeleopInit() {
   if (m_autonomousCommand) {
     m_autonomousCommand->Cancel();
   }
+
+  
 }
 
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() 
+{
+  
+
+}
 
 /**
  * This function is called periodically during test mode.

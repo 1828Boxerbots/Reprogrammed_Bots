@@ -12,6 +12,14 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
+ m_Drive.SetDefaultCommand(frc2::RunCommand(
+      [this] {
+         m_Drive.RC(-m_driverController.GetLeftY(),
+                            -m_driverController.GetRightX());
+      },
+      {&m_Drive}));
+   
+
   // Configure the button bindings
   ConfigureBindings();
 }
@@ -26,9 +34,34 @@ void RobotContainer::ConfigureBindings() {
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
-}
+  
+  //Right trigger = shoot
+  (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_Shoot.Shoot(-ShootConstants::kShooterSpeed)));
 
+    m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shoot.Shoot(ShootConstants::kShooterSpeed)));
+
+//y = load all
+  (m_driverController.LeftBumper() && m_driverController.Y()).WhileTrue(frc2::CommandPtr(m_Load.LoadAll(-ShootConstants::kShooterSpeed)));
+
+  m_driverController.Y().WhileTrue(frc2::CommandPtr(m_Load.LoadAll(LoadConstants::kLoadSpeed)));
+
+//x = load Lower
+  (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue(frc2::CommandPtr(m_Load.LoadLower(-LoadConstants::kLoadSpeed)));
+ 
+  m_driverController.X().WhileTrue(frc2::CommandPtr(m_Load.LoadLower(LoadConstants::kLoadSpeed)));
+
+
+//A = Load Intake
+ (m_driverController.LeftBumper() && m_driverController.A()).WhileTrue(frc2::CommandPtr(m_Load.LoadIntake(-LoadConstants::kLoadSpeed)));
+m_driverController.A().WhileTrue(frc2::CommandPtr(m_Load.LoadIntake(ShootConstants::kShooterSpeed)));
+
+//B = load Upper
+(m_driverController.LeftBumper() && m_driverController.B()).WhileTrue(frc2::CommandPtr(m_Load.LoadUpper(-LoadConstants::kLoadSpeed)));
+m_driverController.B().WhileTrue(frc2::CommandPtr(m_Load.LoadUpper(ShootConstants::kShooterSpeed)));
+
+
+
+};
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);

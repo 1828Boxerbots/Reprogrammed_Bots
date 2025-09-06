@@ -14,6 +14,14 @@
  * they are needed.
  */
 
+
+
+
+
+// ------------
+//All "Ports" are CAN ID's
+//----------
+
 namespace OperatorConstants 
 {
 
@@ -26,34 +34,36 @@ namespace DriveConstants
 {
     //motor controler ports
 
-    inline constexpr int kLeftMotorAPort = 0;
-    inline constexpr int kLeftMotorBPort = 0;
-    inline constexpr int kRightMotorAPort = 0;
-    inline constexpr int kRightMotorBPort = 0;
-
-    inline constexpr int kDriveSpeed = 0;
+    inline constexpr int kLeftMotorAPort = 5;
+    inline constexpr int kLeftMotorBPort = 4;
+    inline constexpr int kRightMotorAPort = 3;
+    inline constexpr int kRightMotorBPort = 2;
 }
 
 namespace ShootConstants
 {
     //Shooter motor ports
 
-    inline constexpr int kShooterPort = 0;
-    inline constexpr int kShooterSpeed = 0;
+    inline constexpr int kShooterPortA = 9;
+    inline constexpr int kShooterPortB = 10;
+    inline constexpr int kShooterSpeed = 0.6; // 1 = 100%, 0 = 0%. Not actually inputing motor speed itslef just its percent
 }
 
 namespace LoadConstants
 {
- inline constexpr int kLowerInnerMotorPort = 0;
- inline constexpr int kHigherInnerMotorPort = 0;
- inline constexpr int kLoadSpeed = 0;
-
+ inline constexpr int kLowerInnerMotorPort = 6; //same as "middle load"
+ inline constexpr int kHigherInnerMotorPort = 8;
+ inline constexpr int kIntakeMotorPort = 7;
+ inline constexpr int kLoadSpeed = 0.6; // 1 = 100%, 0 = 0%. Not actually inputing motor speed itslef just its percent
+   
 
 }
 
-namespace IntakeConstants
+
+
+namespace DemoModeConstants
 {
-    inline constexpr int kIntakeMotorPort = 0;
-    inline constexpr int kIntakeSpeed = 0;
-   
+    inline constexpr int kDemoSwitchPort = 8; 
+    inline constexpr int kDemoShootScale = 0.5; 
+    inline constexpr int kDemoDriveScale = 0.5; 
 }

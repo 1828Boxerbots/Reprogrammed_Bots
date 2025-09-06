@@ -8,13 +8,16 @@
 #include <frc/motorcontrol/PWMTalonSRX.h>
 #include <frc2/command/RunCommand.h>
 #include "Constants.h"
+#include <ctre/phoenix/motorcontrol/can/TalonSRX.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 class ShootSub : public frc2::SubsystemBase {
  public:
   ShootSub();
 
-  frc2::RunCommand Shoot();
+  frc2::RunCommand Shoot(double value);
 
+   void SetShootMotors();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -25,5 +28,8 @@ class ShootSub : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  frc::PWMTalonSRX m_ShootMotor{ShootConstants::kShooterPort};
+   ctre::phoenix::motorcontrol::can::TalonSRX m_ShootMotorA{ShootConstants::kShooterPortA};
+   ctre::phoenix::motorcontrol::can::TalonSRX m_ShootMotorB{ShootConstants::kShooterPortB};
+
+
 };

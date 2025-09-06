@@ -10,20 +10,21 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>
+#include <frc/Drive/DifferentialDrive.h>
+#include <frc2/command/RunCommand.h>
+#include <ctre/phoenix/motorcontrol/can/TalonSRX.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 
-
-
-
-
-class DriveSub : public frc2::SubsystemBase {
+class DriveSub : public frc2::SubsystemBase { 
  public:
   DriveSub();
+  frc2::RunCommand RC(double LeftY, double RightX);
 
-  void RC(double LeftY, double RightX);
-  void StopAllMotors(double value);
-  void SetLeftMotors(double value);
-  void SetRightMotors(double value);
+///Getters and Setters
+
+void SetAllMotors(double value);
 
 //Commands
  
@@ -38,13 +39,26 @@ class DriveSub : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-frc::PWMTalonSRX m_leftMotorA{DriveConstants::kLeftMotorAPort};
-frc::PWMTalonSRX m_leftMotorB{DriveConstants::kLeftMotorBPort};
-frc::PWMTalonSRX m_RightMotorA{DriveConstants::kRightMotorAPort};
-frc::PWMTalonSRX m_RightMotorB{DriveConstants::kRightMotorBPort};
+ ctre::phoenix::motorcontrol::can::TalonSRX m_leftMotorA{DriveConstants::kLeftMotorAPort};
+ ctre::phoenix::motorcontrol::can::TalonSRX m_leftMotorB{DriveConstants::kLeftMotorBPort};
+ ctre::phoenix::motorcontrol::can::TalonSRX m_RightMotorA{DriveConstants::kRightMotorAPort};
+ ctre::phoenix::motorcontrol::can::TalonSRX m_RightMotorB{DriveConstants::kRightMotorBPort};
+
+frc::DifferentialDrive m_drive{[&](double output) {m_leftMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput , output);}, 
+                               [&](double output) {m_RightMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, output);}};
 
 
 
-  
+
+
+
+   // make rc the run command of m_Drive acrade drive
+  void StopAllMotors(double value);
+  void SetLeftMotors(double value);
+  void SetRightMotors(double value);
+
+ 
+
+ 
 
 };

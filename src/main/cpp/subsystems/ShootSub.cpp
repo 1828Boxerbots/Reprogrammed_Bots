@@ -3,16 +3,38 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/ShootSub.h"
+#include "subsystems/DemoSwitchSub.h"
 
 ShootSub::ShootSub() = default;
 
 // This method will be called once per scheduler run
-void ShootSub::Periodic() {}
-
-frc2::RunCommand ShootSub::Shoot() 
+void ShootSub::Periodic() 
 {
-    [this] 
+
+ frc::SmartDashboard::PutNumber("Higher Inner Motor", m_ShootMotorA.GetMotorOutputVoltage());
+ frc::SmartDashboard::PutNumber("Lower Inner Motor",  m_ShootMotorB.GetMotorOutputVoltage());
+ 
+}
+
+frc2::RunCommand ShootSub::Shoot(double value) 
+{
+    if (DemoSwitchSub::Readswitch() == true)
+   {
+    [this, value] 
     {
-        m_ShootMotor.Set(ShootConstants::kShooterSpeed);
+       
+        m_ShootMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, value*DemoModeConstants::kDemoShootScale);
+        m_ShootMotorB.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, value*DemoModeConstants::kDemoShootScale);
     };
+   }
+
+   else
+   {
+    [this, value] 
+    {
+       
+        m_ShootMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, value);
+        m_ShootMotorB.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, value);
+    };
+   }
 };
