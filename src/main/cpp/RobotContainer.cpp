@@ -43,10 +43,11 @@ void RobotContainer::ConfigureBindings() {
   // pressed, cancelling on release.
   m_driverController.X().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(m_intakeSpeed))); //make intake run
   (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-m_intakeSpeed))); //reverse intake while left bumper and X held
+  m_driverController.Y().ToggleOnTrue(frc2::CommandPtr(m_intakeSub.LoadToPhotoGate(m_intakeSpeed)));
   m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(m_shootSpeed))); //make shooter run
   (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-m_shootSpeed))); //reverse shooter while left bumper and right trigger held
   m_driverController.B().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(m_intakeSpeed))).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(m_shootSpeed))); //makes both intake and shooter run from pressing B
-  (m_driverController.B() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-m_intakeSpeed))).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-m_shootSpeed)));
+  (m_driverController.B() && m_driverController.LeftBumper()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-m_intakeSpeed))).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-m_shootSpeed))); //makes both intake and shooter reverse while pressing B and holding left bumper
   m_driveSub.SetDefaultCommand(m_driveSub.TankDrive((m_driverController.GetLeftY() * m_driveSpeedMultiplier), (m_driverController.GetRightY() * m_driveSpeedMultiplier)));//Might work? Default command is drive
 }
 
