@@ -4,7 +4,8 @@ DriveSub::DriveSub()
 {
 //Acts as an Init
 //m_driveMotorBackRight.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
-m_driveMotorFrontRight.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
+m_driveMotorFrontRight.SetInverted(true);
+m_driveMotorFrontLeft.SetInverted(false);
 m_driveMotorBackRight.Follow(m_driveMotorFrontRight);
 m_driveMotorBackLeft.Follow(m_driveMotorFrontLeft);
 }
@@ -21,10 +22,10 @@ void DriveSub::Init()
 
 void DriveSub::Periodic()
 {
-    frc::SmartDashboard::PutNumber("DriveBackLeft Motorcontroller Temperature", m_driveMotorBackLeft.GetTemperature());
-    frc::SmartDashboard::PutNumber("DriveBackRight Motorcontroller Temperature", m_driveMotorBackRight.GetTemperature());
-    frc::SmartDashboard::PutNumber("DriveFrontLeft Motorcontroller Temperature", m_driveMotorFrontLeft.GetTemperature());
-    frc::SmartDashboard::PutNumber("DriveFrontRight Motorcontroller Temperature", m_driveMotorFrontRight.GetTemperature());
+    // frc::SmartDashboard::PutNumber("DriveBackLeft Motorcontroller Temperature", m_driveMotorBackLeft.GetTemperature());
+    // frc::SmartDashboard::PutNumber("DriveBackRight Motorcontroller Temperature", m_driveMotorBackRight.GetTemperature());
+    // frc::SmartDashboard::PutNumber("DriveFrontLeft Motorcontroller Temperature", m_driveMotorFrontLeft.GetTemperature());
+    // frc::SmartDashboard::PutNumber("DriveFrontRight Motorcontroller Temperature", m_driveMotorFrontRight.GetTemperature());
 }
 
 //frc2::StartEndCommand DriveSub::TankDrive(double Leftspeed, double Rightspeed)
@@ -62,22 +63,23 @@ void DriveSub::Periodic()
 //
 //}
 
-frc2::StartEndCommand DriveSub::TankDrive(double LeftY, double RightY)
+void DriveSub::TankDrive(double LeftY, double RightY)
 {
-    return frc2::StartEndCommand 
-    (
-        //Execute
-        [this, LeftY, RightY]
-        {
-            m_driveObject.TankDrive(LeftY, RightY);
-        },
-        //End
-        [this]
-        {
-           m_driveMotorBackLeft.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
-           m_driveMotorFrontLeft.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
-           m_driveMotorBackRight.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
-           m_driveMotorFrontRight.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
-        }
-    );
+    //return frc2::RunCommand 
+    //(
+         //Execute
+    //     [this, LeftY, RightY]
+    //     {
+            m_driveObject.TankDrive(LeftY,RightY);
+    //     }
+    //     //End
+    //     [this]
+    //     {
+    //        m_driveMotorBackLeft.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
+    //        m_driveMotorFrontLeft.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
+    //        m_driveMotorBackRight.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
+    //        m_driveMotorFrontRight.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);
+    //     },
+    //     {&m_driveSub}
+    //);
 }

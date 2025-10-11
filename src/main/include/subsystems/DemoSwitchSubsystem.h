@@ -7,18 +7,18 @@
 #include <frc/DigitalInput.h>
 #include "Constants.h" 
 
-class DemoSwitchSub : public frc2::SubsystemBase
-{
-    public:
-    DemoSwitchSub();
-    ~DemoSwitchSub();
+// class DemoSwitchSub : public frc2::SubsystemBase
+// {
+//     public:
+//     DemoSwitchSub();
+//     ~DemoSwitchSub();
 
-    void Init();
-    void Periodic();
-    static bool GetDemoSwitch();
+//     void Init();
+//     void Periodic();
+//     static bool GetDemoSwitch();
 
 
-    private:
-    //static bool m_DemoSwitchStatus;
-    static frc::DigitalInput m_DemoSwitch;
-};
+//     private:
+//     static bool m_DemoSwitchStatus;
+//     static frc::DigitalInput m_DemoSwitch;
+//};
