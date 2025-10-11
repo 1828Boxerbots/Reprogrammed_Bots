@@ -36,28 +36,45 @@ void RobotContainer::ConfigureBindings() {
   // pressed, cancelling on release.
   
   //Right trigger = shoot
-  (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_Shoot.Shoot(-ShootConstants::kShooterSpeed)));
 
-    m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_Shoot.Shoot(ShootConstants::kShooterSpeed)));
+    //Reversed
+    (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_Shoot.Shoot(-ShootConstants::kShooterSpeed)));
+
+    //Forward
+    (!m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_Shoot.Shoot(ShootConstants::kShooterSpeed)));
 
 //y = load all
-  (m_driverController.LeftBumper() && m_driverController.Y()).WhileTrue(frc2::CommandPtr(m_Load.LoadAll(-ShootConstants::kShooterSpeed)));
 
-  m_driverController.Y().WhileTrue(frc2::CommandPtr(m_Load.LoadAll(LoadConstants::kLoadSpeed)));
+    //Reversed
+    (m_driverController.LeftBumper() && m_driverController.Y()).WhileTrue(frc2::CommandPtr(m_Load.LoadAll(-ShootConstants::kShooterSpeed)));
+
+    //Forward
+    (!m_driverController.LeftBumper() && m_driverController.Y()).WhileTrue(frc2::CommandPtr(m_Load.LoadAll(LoadConstants::kLoadSpeed)));
 
 //x = load Lower
+
+   //Reversed
   (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue(frc2::CommandPtr(m_Load.LoadLower(-LoadConstants::kLoadSpeed)));
  
-  m_driverController.X().WhileTrue(frc2::CommandPtr(m_Load.LoadLower(LoadConstants::kLoadSpeed)));
+   //Forward
+  (!m_driverController.LeftBumper() && m_driverController.X()).WhileTrue(frc2::CommandPtr(m_Load.LoadLower(LoadConstants::kLoadSpeed)));
 
 
 //A = Load Intake
- (m_driverController.LeftBumper() && m_driverController.A()).WhileTrue(frc2::CommandPtr(m_Load.LoadIntake(-LoadConstants::kLoadSpeed)));
-m_driverController.A().WhileTrue(frc2::CommandPtr(m_Load.LoadIntake(ShootConstants::kShooterSpeed)));
+
+  //Reversed
+  (m_driverController.LeftBumper() && m_driverController.A()).WhileTrue(frc2::CommandPtr(m_Load.LoadIntake(-LoadConstants::kLoadSpeed)));
+
+  //Forward
+  (!m_driverController.LeftBumper() && m_driverController.A()).WhileTrue(frc2::CommandPtr(m_Load.LoadIntake(ShootConstants::kShooterSpeed)));
 
 //B = load Upper
-(m_driverController.LeftBumper() && m_driverController.B()).WhileTrue(frc2::CommandPtr(m_Load.LoadUpper(-LoadConstants::kLoadSpeed)));
-m_driverController.B().WhileTrue(frc2::CommandPtr(m_Load.LoadUpper(ShootConstants::kShooterSpeed)));
+
+   //Reversed
+  (m_driverController.LeftBumper() && m_driverController.B()).WhileTrue(frc2::CommandPtr(m_Load.LoadUpper(-LoadConstants::kLoadSpeed)));
+
+  //Forward
+   (!m_driverController.LeftBumper() && m_driverController.B()).WhileTrue(frc2::CommandPtr(m_Load.LoadUpper(ShootConstants::kShooterSpeed)));
 
 
 

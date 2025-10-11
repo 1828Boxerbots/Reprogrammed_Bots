@@ -10,6 +10,7 @@
 #include <frc2/command/RunCommand.h>
 #include "Constants.h"
 #include <ctre/phoenix/motorcontrol/can/TalonSRX.h>
+
 #include <frc/smartdashboard/SmartDashboard.h>
 
 class LoadSub : public frc2::SubsystemBase {
@@ -34,7 +35,7 @@ frc2::RunCommand LoadIntake(double value);
 
 ctre::phoenix::motorcontrol::can::TalonSRX m_LowerInnerMotor{LoadConstants::kHigherInnerMotorPort};
 ctre::phoenix::motorcontrol::can::TalonSRX m_HigherInnerMotor{LoadConstants::kLowerInnerMotorPort};
-ctre::phoenix::motorcontrol::can::TalonSRX m_IntakeMotor{IntakeConstants::kIntakeMotorPort};
+ctre::phoenix::motorcontrol::can::TalonSRX m_IntakeMotor{LoadConstants::kIntakeMotorPort};
 
 
 

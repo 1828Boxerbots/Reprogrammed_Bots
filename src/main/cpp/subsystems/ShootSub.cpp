@@ -11,8 +11,8 @@ ShootSub::ShootSub() = default;
 void ShootSub::Periodic() 
 {
 
- frc::SmartDashboard::PutNumber("Higher Inner Motor", m_ShootMotorA.GetMotorOutputVoltage());
- frc::SmartDashboard::PutNumber("Lower Inner Motor",  m_ShootMotorB.GetMotorOutputVoltage());
+ frc::SmartDashboard::PutNumber("Higher Inner Motor: ", m_ShootMotorA.GetMotorOutputVoltage());
+ frc::SmartDashboard::PutNumber("Lower Inner Motor: ",  m_ShootMotorB.GetMotorOutputVoltage());
  
 }
 
@@ -22,6 +22,7 @@ frc2::RunCommand ShootSub::Shoot(double value)
    {
     [this, value] 
     {
+        
        
         m_ShootMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, value*DemoModeConstants::kDemoShootScale);
         m_ShootMotorB.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, value*DemoModeConstants::kDemoShootScale);

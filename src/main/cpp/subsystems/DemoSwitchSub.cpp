@@ -1,7 +1,6 @@
 #include "subsystems/DemoSwitchSub.h"
 
 
-DemoSwitchSub::DemoSwitchSub() = default;
 
 bool DemoSwitchSub::Readswitch()
 {
@@ -11,5 +10,6 @@ bool DemoSwitchSub::Readswitch()
 void DemoSwitchSub::Periodic()
 {
     frc::SmartDashboard::PutBoolean("Demo Switch value: ", m_DemoSwitch.Get());
+   
   
 }

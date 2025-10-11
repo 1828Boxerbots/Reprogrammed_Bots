@@ -2,6 +2,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <units/length.h>
+#include <units/velocity.h>
+
 #pragma once
 
 /**
@@ -38,6 +41,12 @@ namespace DriveConstants
     inline constexpr int kLeftMotorBPort = 4;
     inline constexpr int kRightMotorAPort = 3;
     inline constexpr int kRightMotorBPort = 2;
+
+    //Track width
+    //  inline constexpr int kTrackWidth = 0;
+    inline constexpr units::foot_t kTrackWidth = 1.92_ft;
+
+    inline constexpr units::feet_per_second_t kSpeed = 1.0_fps;
 }
 
 namespace ShootConstants
@@ -54,7 +63,7 @@ namespace LoadConstants
  inline constexpr int kLowerInnerMotorPort = 6; //same as "middle load"
  inline constexpr int kHigherInnerMotorPort = 8;
  inline constexpr int kIntakeMotorPort = 7;
- inline constexpr int kLoadSpeed = 0.6; // 1 = 100%, 0 = 0%. Not actually inputing motor speed itslef just its percent
+ inline constexpr int kLoadSpeed = 0.8; // 1 = 100%, 0 = 0%. Not actually inputing motor speed itslef just its percent
    
 
 }

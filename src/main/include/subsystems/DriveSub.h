@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <units/length.h>
 #include <frc2/command/SubsystemBase.h>
 #include  <frc/motorcontrol/PWMTalonSRX.h>
 #include "Constants.h"
@@ -14,6 +15,7 @@
 #include <frc/Drive/DifferentialDrive.h>
 #include <frc2/command/RunCommand.h>
 #include <ctre/phoenix/motorcontrol/can/TalonSRX.h>
+
 #include <frc/smartdashboard/SmartDashboard.h>
 
 
@@ -43,6 +45,12 @@ void SetAllMotors(double value);
  ctre::phoenix::motorcontrol::can::TalonSRX m_leftMotorB{DriveConstants::kLeftMotorBPort};
  ctre::phoenix::motorcontrol::can::TalonSRX m_RightMotorA{DriveConstants::kRightMotorAPort};
  ctre::phoenix::motorcontrol::can::TalonSRX m_RightMotorB{DriveConstants::kRightMotorBPort};
+
+
+//Differential Drive Kinemeatic object
+frc::DifferentialDriveKinematics m_kinematics {DriveConstants::kTrackWidth};
+
+
 
 frc::DifferentialDrive m_drive{[&](double output) {m_leftMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput , output);}, 
                                [&](double output) {m_RightMotorA.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, output);}};
