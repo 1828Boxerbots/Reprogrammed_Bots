@@ -5,7 +5,9 @@ DriveSub::DriveSub()
 //Acts as an Init
 //m_driveMotorBackRight.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
 m_driveMotorFrontRight.SetInverted(true);
+m_driveMotorBackRight.SetInverted(true);
 m_driveMotorFrontLeft.SetInverted(false);
+m_driveMotorBackLeft.SetInverted(false);
 m_driveMotorBackRight.Follow(m_driveMotorFrontRight);
 m_driveMotorBackLeft.Follow(m_driveMotorFrontLeft);
 }
