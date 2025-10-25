@@ -17,17 +17,25 @@ void IntakeSub::Init()
 
 void IntakeSub::Periodic()
 {
-frc::SmartDashboard::PutNumber("Intake Motorcontroller Temperature", m_intakeMotor.GetTemperature());
+    frc::SmartDashboard::PutNumber("Intake Motorcontroller Speed", m_intakeMotor.GetMotorOutputPercent());
 }
 
-frc2::StartEndCommand IntakeSub::SetMotors(double speed)
+frc2::CommandPtr IntakeSub::SetMotors(double speed, double demoSpeed)
 {
-    return frc2::StartEndCommand
+    return StartEnd
     (
     //execute
-    [this, speed]
+    [this, speed, demoSpeed]
     {
-        m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
+        if (DemoSwitchSub::GetDemoSwitch())
+        {
+            m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, demoSpeed);
+        }
+        else
+        {
+            m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
+        }
+        
     },
     //end
     [this] 

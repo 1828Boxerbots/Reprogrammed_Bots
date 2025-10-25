@@ -7,6 +7,7 @@
 #include <frc/motorcontrol/VictorSP.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "Constants.h" 
+#include "DemoSwitchSubsystem.h"
 
 class ShooterSub : public frc2::SubsystemBase
 {
@@ -16,7 +17,7 @@ class ShooterSub : public frc2::SubsystemBase
 
     void Init();
     void Periodic() override;
-    frc2::StartEndCommand Setmotors(double speed);
+    frc2::CommandPtr Setmotors(double speed, double demoSpeed);
 
 
 ctre::phoenix::motorcontrol::can::VictorSPX m_shootMotor1{ShooterConstants::kShooter1Port};

@@ -24,10 +24,10 @@ void DriveSub::Init()
 
 void DriveSub::Periodic()
 {
-    // frc::SmartDashboard::PutNumber("DriveBackLeft Motorcontroller Temperature", m_driveMotorBackLeft.GetTemperature());
-    // frc::SmartDashboard::PutNumber("DriveBackRight Motorcontroller Temperature", m_driveMotorBackRight.GetTemperature());
-    // frc::SmartDashboard::PutNumber("DriveFrontLeft Motorcontroller Temperature", m_driveMotorFrontLeft.GetTemperature());
-    // frc::SmartDashboard::PutNumber("DriveFrontRight Motorcontroller Temperature", m_driveMotorFrontRight.GetTemperature());
+    // frc::SmartDashboard::PutNumber("DriveBackLeft Motorcontroller Speed", m_driveMotorBackLeft.GetMotorOutputPercent());
+    // frc::SmartDashboard::PutNumber("DriveBackRight Motorcontroller Speed", m_driveMotorBackRight.GetMotorOutputPercent());
+     frc::SmartDashboard::PutNumber("DriveFrontLeft Motorcontroller Speed", m_driveMotorFrontLeft.GetMotorOutputPercent());
+     frc::SmartDashboard::PutNumber("DriveFrontRight Motorcontroller Speed", m_driveMotorFrontRight.GetMotorOutputPercent());
 }
 
 //frc2::StartEndCommand DriveSub::TankDrive(double Leftspeed, double Rightspeed)
@@ -72,7 +72,15 @@ void DriveSub::TankDrive(double LeftY, double RightY)
          //Execute
     //     [this, LeftY, RightY]
     //     {
-            m_driveObject.TankDrive(LeftY,RightY);
+            if(DemoSwitchSub::GetDemoSwitch())
+            {
+                m_driveObject.TankDrive((LeftY * DriveConstants::kDemoDriveSpeedMultiplier),(RightY * DriveConstants::kDemoDriveSpeedMultiplier));
+            }
+            else
+            {
+                m_driveObject.TankDrive(LeftY,RightY);
+            }
+            
     //     }
     //     //End
     //     [this]

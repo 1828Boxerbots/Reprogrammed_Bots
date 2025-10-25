@@ -8,6 +8,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/DigitalInput.h>
 #include "Constants.h" 
+#include "DemoSwitchSubsystem.h"
 
 class IntakeSub : public frc2::SubsystemBase
 {
@@ -16,7 +17,7 @@ class IntakeSub : public frc2::SubsystemBase
     ~IntakeSub();
     void Init();
     void Periodic() override;
-    frc2::StartEndCommand SetMotors(double speed);
+    frc2::CommandPtr SetMotors(double speed, double demoSpeed);
     //frc2::FunctionalCommand LoadToPhotoGate(double speed);
 
     ctre::phoenix::motorcontrol::can::VictorSPX m_intakeMotor{IntakeConstants::kIntakePort}; 

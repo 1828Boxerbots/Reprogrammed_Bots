@@ -26,8 +26,8 @@ namespace DriveConstants
     inline constexpr int kDrive1Port = 1;
     inline constexpr int kDrive2Port = 2;
     inline constexpr int kDrive3Port = 3;
-    inline constexpr int kDemoDriveSpeedMultiplier = 0.5; //Placeholder value
-    inline constexpr int kDriveSpeedMultiplier = 1; 
+    inline constexpr double kDemoDriveSpeedMultiplier = 0.8; //Placeholder value
+    inline constexpr double kDriveSpeedMultiplier = 1; 
     //.GetTemperature Method of VictorSPX may get temp of controller not motor itself, be aware. 
     inline constexpr double kTempuratureLimit = 60; //Placeholder-ish value, unsure of good number. 
 }

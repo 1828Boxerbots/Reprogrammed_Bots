@@ -22,7 +22,7 @@ RobotContainer::RobotContainer() {
     (
       [this] 
       {
-        m_driveSub.TankDrive(m_driverController.GetLeftY(), m_driverController.GetRightY());
+        m_driveSub.TankDrive(-m_driverController.GetLeftY(), -m_driverController.GetRightY());
       },
       {&m_driveSub}
     )
@@ -52,17 +52,18 @@ void RobotContainer::ConfigureBindings() {
 
   // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
   // pressed, cancelling on release.
-  m_driverController.X().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(m_intakeSpeed))); //make intake run
-  (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-m_intakeSpeed))); //reverse intake while left bumper and X held
+  (!m_driverController.LeftBumper() && m_driverController.X()).WhileTrue((m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed, IntakeConstants::kDemoIntakeSpeed))); //make intake run
+  (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue((m_intakeSub.SetMotors(-IntakeConstants::kIntakeSpeed, -IntakeConstants::kDemoIntakeSpeed))); //reverse intake while left bumper and X held
   //m_driverController.Y().ToggleOnTrue(frc2::CommandPtr(m_intakeSub.LoadToPhotoGate(m_intakeSpeed)));
-  m_driverController.RightTrigger().WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(m_shootSpeed))); //make shooter run
-  (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-m_shootSpeed))); //reverse shooter while left bumper and right trigger held
-  m_driverController.B().WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(m_intakeSpeed))).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(m_shootSpeed))); //makes both intake and shooter run from pressing B
-  (m_driverController.B() && m_driverController.LeftBumper()).WhileTrue(frc2::CommandPtr(m_intakeSub.SetMotors(-m_intakeSpeed))).WhileTrue(frc2::CommandPtr(m_shooterSub.Setmotors(-m_shootSpeed))); //makes both intake and shooter reverse while pressing B and holding left bumper
+  (!m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed, ShooterConstants::kDemoShooterspeed)); //make shooter run
+  (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(m_shooterSub.Setmotors(-ShooterConstants::kShooterSpeed, -ShooterConstants::kDemoShooterspeed)); //reverse shooter while left bumper and right trigger held
+  (!m_driverController.LeftBumper() && m_driverController.B()).WhileTrue((m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed, IntakeConstants::kDemoIntakeSpeed))).WhileTrue((m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed, ShooterConstants::kDemoShooterspeed))); //makes both intake and shooter run from pressing B
+  (m_driverController.LeftBumper() && m_driverController.B()).WhileTrue((m_intakeSub.SetMotors(-IntakeConstants::kIntakeSpeed, -IntakeConstants::kDemoIntakeSpeed))).WhileTrue((m_shooterSub.Setmotors(-ShooterConstants::kShooterSpeed, ShooterConstants::kDemoShooterspeed))); //makes both intake and shooter reverse while pressing B and holding left bumper
   
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
+frc2::CommandPtr 
+RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
 }
