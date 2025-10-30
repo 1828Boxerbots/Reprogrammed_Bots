@@ -3,8 +3,8 @@
 ShooterSub::ShooterSub()
 {
 //acts as an init
-m_shootMotor1.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
-m_shootMotor2.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
+//m_shootMotor1.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
+//m_shootMotor2.SetInverted(ctre::phoenix::motorcontrol::InvertType::InvertMotorOutput);
 }
 
 ShooterSub::~ShooterSub()

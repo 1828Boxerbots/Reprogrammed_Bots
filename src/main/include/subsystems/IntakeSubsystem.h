@@ -18,9 +18,9 @@ class IntakeSub : public frc2::SubsystemBase
     void Init();
     void Periodic() override;
     frc2::CommandPtr SetMotors(double speed, double demoSpeed);
-    //frc2::FunctionalCommand LoadToPhotoGate(double speed);
+    frc2::FunctionalCommand LoadToPhotoGate(double speed, double demoSpeed);
 
     ctre::phoenix::motorcontrol::can::VictorSPX m_intakeMotor{IntakeConstants::kIntakePort}; 
-    //frc::DigitalInput m_photoGate{IntakeConstants::kPhotogatePort};
+    frc::DigitalInput m_photoGate{IntakeConstants::kPhotogatePort};
     
 };

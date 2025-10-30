@@ -54,7 +54,7 @@ void RobotContainer::ConfigureBindings() {
   // pressed, cancelling on release.
   (!m_driverController.LeftBumper() && m_driverController.X()).WhileTrue((m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed, IntakeConstants::kDemoIntakeSpeed))); //make intake run
   (m_driverController.LeftBumper() && m_driverController.X()).WhileTrue((m_intakeSub.SetMotors(-IntakeConstants::kIntakeSpeed, -IntakeConstants::kDemoIntakeSpeed))); //reverse intake while left bumper and X held
-  //m_driverController.Y().ToggleOnTrue(frc2::CommandPtr(m_intakeSub.LoadToPhotoGate(m_intakeSpeed)));
+  m_driverController.Y().ToggleOnTrue(frc2::CommandPtr(m_intakeSub.LoadToPhotoGate(IntakeConstants::kIntakeSpeed, IntakeConstants::kDemoIntakeSpeed)));
   (!m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed, ShooterConstants::kDemoShooterspeed)); //make shooter run
   (m_driverController.LeftBumper() && m_driverController.RightTrigger()).WhileTrue(m_shooterSub.Setmotors(-ShooterConstants::kShooterSpeed, -ShooterConstants::kDemoShooterspeed)); //reverse shooter while left bumper and right trigger held
   (!m_driverController.LeftBumper() && m_driverController.B()).WhileTrue((m_intakeSub.SetMotors(IntakeConstants::kIntakeSpeed, IntakeConstants::kDemoIntakeSpeed))).WhileTrue((m_shooterSub.Setmotors(ShooterConstants::kShooterSpeed, ShooterConstants::kDemoShooterspeed))); //makes both intake and shooter run from pressing B

@@ -2,7 +2,7 @@
 
 IntakeSub::IntakeSub()
 {
-
+    m_intakeMotor.SetInverted(true);
 }
 
 IntakeSub::~IntakeSub()
@@ -18,6 +18,7 @@ void IntakeSub::Init()
 void IntakeSub::Periodic()
 {
     frc::SmartDashboard::PutNumber("Intake Motorcontroller Speed", m_intakeMotor.GetMotorOutputPercent());
+    frc::SmartDashboard::PutBoolean("Photogate", m_photoGate.Get());
 }
 
 frc2::CommandPtr IntakeSub::SetMotors(double speed, double demoSpeed)
@@ -47,24 +48,27 @@ frc2::CommandPtr IntakeSub::SetMotors(double speed, double demoSpeed)
 
 }
 
-// frc2::FunctionalCommand IntakeSub::LoadToPhotoGate(double speed)
-// {
-//   //Start
-//   [this] 
-//   {
+frc2::FunctionalCommand IntakeSub::LoadToPhotoGate(double speed, double demoSpeed)
+{
 
-//   },
-//   //Execute
-//   [this, speed] 
-//   {
-//     m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
-//   },
-//   //End
-//   [this] (bool interrupted) 
-//   {
-//     m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);    
-//   },
-//   //End Condition
-//   [this] {return m_photoGate.Get() == true;};
-  
-// }
+    return frc2::FunctionalCommand
+    (
+        //Start
+        [this] 
+        {
+
+        },
+        //Execute
+        [this, speed] 
+        {
+            m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, speed);
+        },
+        //End
+        [this] (bool interrupted) 
+        {
+            m_intakeMotor.Set(ctre::phoenix::motorcontrol::VictorSPXControlMode::PercentOutput, 0);    
+        },
+        //End Condition
+        [this] {return m_photoGate.Get() == true;}
+    );
+}
